@@ -28,15 +28,26 @@ public class PlayerHealth : MonoBehaviour
             source.Direction = -source.Direction;
             return;
         }
+
         Destroy(source.gameObject);
 
         if (_segmentManager.PlayerLength <= _killLength)
         {
-            OnDeath?.Invoke();
-            IsAlive = false;
+            ProcessDeath();
             return;
         }
 
         _segmentManager.DetachSegment(segment);
+    }
+
+    private void ProcessDeath()
+    {
+        OnDeath?.Invoke();
+        IsAlive = false;
+
+        foreach (var segment in _segmentManager.Segments)
+        {
+            segment.IsAttached = false;
+        }
     }
 }
