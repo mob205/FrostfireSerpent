@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SegmentManager : MonoBehaviour
 {
-    public int NumSegments { get { return _segments.Count; } }
+    public int NumSegments { get { return _segments.Count; } } 
     public IList<FollowSegment> Segments { get { return _segments.AsReadOnly(); } }
 
     [SerializeField] private FollowSegment _segment;
@@ -56,6 +56,14 @@ public class SegmentManager : MonoBehaviour
         newSegment.SetSprite(_endSprite);
 
         _endSegment = newSegment;
+    }
+
+    public void RemoveSegment(int numSegments)
+    {
+        for(int i = 0; i < numSegments; i++)
+        {
+            RemoveSegment();
+        }
     }
 
     public void RemoveSegment()
