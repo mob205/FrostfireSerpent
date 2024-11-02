@@ -51,7 +51,7 @@ public class EnemyAI : MonoBehaviour
 
             _navAgent.isStopped = false;
             _nearest = _segmentDetector.GetNearest();
-            if (_nearest == null)
+            if (_nearest == null || !_nearest.Head.GetComponent<PlayerHealth>().IsAlive)
             {
                 RandomWalk();
                 continue;
