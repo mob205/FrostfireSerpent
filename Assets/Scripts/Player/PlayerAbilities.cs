@@ -11,7 +11,6 @@ public class PlayerAbilities : MonoBehaviour
     {
         _abilities = GetComponentsInChildren<Ability>();
         _segmentManager = GetComponent<SegmentManager>();
-        Debug.Log("I found " + _abilities.Length + " abilities");
     }
     private void CastAbility(int abilityIdx)
     {

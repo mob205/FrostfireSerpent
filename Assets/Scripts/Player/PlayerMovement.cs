@@ -32,6 +32,6 @@ public class PlayerMovement : MonoBehaviour
             Quaternion.FromToRotation(Vector2.right, _frameDirection), 
             TurnRate * Time.fixedDeltaTime);
 
-        _rb.velocity = MoveSpeed * Time.fixedDeltaTime * transform.right;
+        _rb.velocity = MoveSpeed * transform.right;
     }
 }
