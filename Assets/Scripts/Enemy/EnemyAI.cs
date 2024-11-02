@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Attacking")]
     [SerializeField] private float _attackSpeed;
+    [SerializeField] private Projectile _projectile;
 
     [Header("Patrolling")]
     [SerializeField] private float _patrolRetargetMinDelay;
@@ -41,20 +42,17 @@ public class EnemyAI : MonoBehaviour
     {
         StartCoroutine(DelayedUpdate());
     }
-    private void Update()
-    {
-        
-    }
+   
     private IEnumerator DelayedUpdate()
     {
         while (true)
         {
             yield return new WaitForSeconds(_retargetingDelay);
 
+            _navAgent.isStopped = false;
             _nearest = _segmentDetector.GetNearest();
             if (_nearest == null)
             {
-                Debug.Log("must've been the wind");
                 RandomWalk();
                 continue;
             }
@@ -64,20 +62,15 @@ public class EnemyAI : MonoBehaviour
 
             if (dist < _fleeRange)
             {
-                Debug.Log("AHH! RUn away!!");
-                _navAgent.isStopped = false;
                 Flee();
             }
             else if (dist < _attackRange)
             {
-                Debug.Log("Dodge THIS!");
                 _navAgent.isStopped = true;
                 Attack();
             }
             else
             {
-                _navAgent.isStopped = false;
-                Debug.Log("omw");
                 Chase();
             }
         }
@@ -86,8 +79,13 @@ public class EnemyAI : MonoBehaviour
     private void Attack()
     {
         if (!_canAttack) { return; }
-        // attack stuff here pew pew
-        ResetAttack();
+
+        var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
+
+        var dir = (_nearest.transform.position - transform.position).normalized;
+        projectile.SetDirection(dir);
+
+        StartCoroutine(ResetAttack());
     }
 
     private void Chase()
@@ -100,8 +98,6 @@ public class EnemyAI : MonoBehaviour
         // Get direction going from nearest segment to enemy. This is the direction to run away from the player
         Vector3 dir = (new Vector3(transform.position.x, transform.position.y, 0) - _nearest.transform.position).normalized;
 
-        Debug.Log($"Run dir: {dir}");
-        // Run arbitrarily far in that direction
         _navAgent.SetDestination(transform.position + (15 * dir));
     }
 
@@ -142,24 +138,4 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(1 / _attackSpeed);
         _canAttack = true;
     }
-    //private StateMachine _stateMachine;
-
-    //private void Awake()
-    //{
-    //    _navAgent = GetComponent<NavMeshAgent>();
-    //    _navAgent.updateRotation = false;
-    //    _navAgent.updateUpAxis = false;
-
-    //    _stateMachine = new StateMachine();
-
-    //    var patrolState = new PatrolState(_navAgent, _patrolRetargetMin, _patrolRetargetMax, _patrolDistance);
-
-    //    _stateMachine.SetState(patrolState);
-    //}
-
-    //private void Update()
-    //{
-    //    _stateMachine.Tick();
-    //}
-
 }

@@ -17,7 +17,6 @@ public class ChargeAbility : Ability
 
     public override void CastAbility()
     {
-        Debug.Log("CHARGE!!!");
         StartCooldown();
         StartCoroutine(ProcessCharge());
     }

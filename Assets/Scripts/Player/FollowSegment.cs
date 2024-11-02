@@ -5,7 +5,10 @@ using UnityEngine;
 public class FollowSegment : MonoBehaviour
 {
     [SerializeField] private float _followDistance;
+
+    public SegmentManager Head { get; set; }
     public FollowSegment FollowTarget { get; set; }
+    public bool IsAttached { get; set; } = true;
 
     public IList<FollowSegment> IncidentSegments { get { return _incidentSegments.AsReadOnly(); } }
     private List<FollowSegment> _incidentSegments = new List<FollowSegment>();

@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29e1649d0cdd254298bf8c8829f7d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <FollowPoint>k__BackingField: {fileID: 8974211051187070521}
   _followDistance: 0.75
 --- !u!61 &-2619119710736087136
 BoxCollider2D:

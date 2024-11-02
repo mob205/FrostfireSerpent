@@ -21,10 +21,11 @@ public class PlayerAbilities : MonoBehaviour
 
         var ability = _abilities[abilityIdx];
         
-        if(ability.CurrentCooldown <= 0 && _segmentManager.NumSegments > ability.Cost)
+        // Use ability cost + 1 to leave a tail
+        if(ability.CurrentCooldown <= 0 && _segmentManager.PlayerLength > (ability.Cost + 1))
         {
             ability.CastAbility();
-            _segmentManager.RemoveSegment(ability.Cost);
+            _segmentManager.DetachSegments(ability.Cost);
         }
     }
 

@@ -26,7 +26,7 @@ public class SnakeCircleDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_canCircle && collision.TryGetComponent(out FollowSegment segment))
+        if(_canCircle && collision.TryGetComponent(out FollowSegment segment) && segment.IsAttached)
         {
             MakeCircle(segment);
             StartCoroutine(ResetCooldown());

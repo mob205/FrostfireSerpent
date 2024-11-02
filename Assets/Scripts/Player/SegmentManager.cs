@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SegmentManager : MonoBehaviour
 {
-    public int NumSegments { get { return _segments.Count; } } 
+    public int PlayerLength { get { return _segments.Count; } } 
     public IList<FollowSegment> Segments { get { return _segments.AsReadOnly(); } }
 
     [SerializeField] private FollowSegment _segment;
-
     [SerializeField] private Sprite _middleSprite;
     [SerializeField] private Sprite _endSprite;
-
     [SerializeField] private int _numStartingSegments;
+
+    [SerializeField] private SegmentPickup _detachedPickup;
 
     private List<FollowSegment> _segments = new List<FollowSegment>();
 
@@ -27,23 +27,27 @@ public class SegmentManager : MonoBehaviour
     }
     void Start()
     {
-        AddSegment(NumSegments);
+        AddSegment(_numStartingSegments);
     }
     public void AddSegment(int numSegments)
     {
-        for(int i = 0; i < _numStartingSegments; i++)
+        for(int i = 0; i < numSegments; i++)
         {
             AddSegment();
         }
     }
-    public void AddSegment()
+    private void AddSegment()
     {
         // Create new segment and add it to end of snake
         var newSegment = Instantiate(_segment, _endSegment.transform.position, _endSegment.transform.rotation);
         newSegment.FollowTarget = _endSegment;
+        newSegment.Head = this;
+
         newSegment.Initialize();
 
         newSegment.name = $"Segment {_segments.Count - 1}";
+
+        newSegment.IsAttached = true;
 
         _segments.Add(newSegment);
 
@@ -58,42 +62,77 @@ public class SegmentManager : MonoBehaviour
         _endSegment = newSegment;
     }
 
-    public void RemoveSegment(int numSegments)
+    public void DetachSegment(FollowSegment segment)
     {
-        for(int i = 0; i < numSegments; i++)
+        int numSegments = 0;
+        FollowSegment _curSeg = _endSegment;
+        while(_curSeg != null && _curSeg != segment && _curSeg != _headSegment)
         {
-            RemoveSegment();
+            numSegments++;
+            _curSeg = _curSeg.FollowTarget;
+        }
+        if(_curSeg == null || _curSeg == _headSegment)
+        {
+            Debug.LogError("Segment not found.");
+        }
+        else
+        {
+            DetachSegments(numSegments);
         }
     }
 
-    public void RemoveSegment()
+    public void DetachSegments(int numSegments)
+    {
+        if (numSegments <= 0 || PlayerLength == 1) return;
+        SegmentPickup pickup = Instantiate(_detachedPickup, transform.position, Quaternion.identity);
+
+        int i;
+        for (i = 0; i < numSegments; i++)
+        {
+            var removed = RemoveSegment();
+            if (!removed) { break; }
+
+            // Set up detached segment to be picked up 
+            removed.transform.parent = pickup.transform;
+            if(removed.TryGetComponent(out Rigidbody2D rb))
+            {
+                Destroy(rb);
+            }
+            if(removed.TryGetComponent(out Collider2D col))
+            {
+                col.usedByComposite = true;
+            }
+        }
+        pickup.NumSegments = i;
+        _endSegment.SetSprite(_endSprite);
+    }
+
+    public void DestroySegments(int numSegments)
+    {
+        for (int i = 0; i < numSegments; i++)
+        {
+            var removed = RemoveSegment();
+            if (!removed) { break; }
+            Destroy(removed.gameObject);
+        }
+        _endSegment.SetSprite(_endSprite);
+    }
+
+    private FollowSegment RemoveSegment()
     {
         var lastSegment = _segments[_segments.Count - 1];
 
         // Removing head segment will make it impossible to add segments later
-        if(lastSegment == _headSegment) { return; }
+        if(lastSegment == _headSegment) { return null; }
 
         _segments.RemoveAt(_segments.Count - 1);
 
-        Destroy(lastSegment.gameObject);
+        lastSegment.FollowTarget = null;
+        lastSegment.Head = null;
+        lastSegment.IsAttached = false;
 
         _endSegment = _segments[_segments.Count - 1];
-        _endSegment.SetSprite(_endSprite);
-    }
 
-    // Gets a sublist of all segments from start to specified endSegment
-    public List<FollowSegment> GetSublist(FollowSegment endSegment)
-    {
-        List<FollowSegment> res = new List<FollowSegment>(NumSegments);
-        foreach(var segment in _segments)
-        {
-            res.Add(segment);
-            if(segment == endSegment)
-            {
-                return res;
-            }
-        }
-        Debug.LogError("Specified end segment was not found in the list.");
-        return res;
+        return lastSegment;
     }
 }

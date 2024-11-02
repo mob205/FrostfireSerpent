@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SegmentPickup : MonoBehaviour
 {
-    [SerializeField] private int _numSegments;
+    [field: SerializeField]public int NumSegments { get; set; }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Trigger detected.");
         if(collision.TryGetComponent(out SegmentManager segmentManager))
         {
-            segmentManager.AddSegment(_numSegments);
+            segmentManager.AddSegment(NumSegments);
             Destroy(gameObject);
         }
     }

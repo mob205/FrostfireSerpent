@@ -27,8 +27,13 @@ public class SegmentDetector : MonoBehaviour
     {
         FollowSegment best = null;
         float bestDist = Mathf.Infinity;
+        
+        // Segments that are picked up won't un-trigger
+        NearbySegments.RemoveAll((elem) => elem == null);
+
         foreach(FollowSegment segment in NearbySegments)
         {
+            if (!segment.IsAttached) { continue; }
             var curDist = (segment.transform.position - transform.position).sqrMagnitude;
             if (curDist < bestDist)
             {

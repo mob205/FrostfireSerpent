@@ -39,6 +39,8 @@ Transform:
   m_Children:
   - {fileID: 2982415799364320095}
   - {fileID: 7959192681721162829}
+  - {fileID: 6584051909330972744}
+  - {fileID: 5001508452623523734}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4129314079002130617
@@ -135,11 +137,35 @@ MonoBehaviour:
     m_ActionId: 50b51bd5-b78c-47d7-b5ad-7bab952247c0
     m_ActionName: Player/Direction[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1378510444045823308}
+        m_TargetAssemblyTypeName: PlayerAbilities, Assembly-CSharp
+        m_MethodName: CastAbility0
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 91bb33d6-27d8-4f70-ac70-c94663ec3aea
     m_ActionName: Player/Ability1[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1378510444045823308}
+        m_TargetAssemblyTypeName: PlayerAbilities, Assembly-CSharp
+        m_MethodName: CastAbility1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6794323a-4844-4c03-86e9-8e1826fea0c5
     m_ActionName: Player/Ability2[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
@@ -171,8 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21825a255e08bf0489647d167dfcf09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 300
-  _turnRate: 180
+  <MoveSpeed>k__BackingField: 8
+  <TurnRate>k__BackingField: 200
 --- !u!114 &2492767040318085040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +214,8 @@ MonoBehaviour:
   _segment: {fileID: 8470332731558220370, guid: c08b10eeba4987948b0023f8e7793813, type: 3}
   _middleSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   _endSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  _numStartingSegments: 45
+  _numStartingSegments: 20
+  _detachedPickup: {fileID: 7422697420074170186, guid: 923cca73c51771348accb7c0b9675671, type: 3}
 --- !u!50 &1493229758798617149
 Rigidbody2D:
   serializedVersion: 4
@@ -358,6 +385,101 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!1 &7414231252600536430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5001508452623523734}
+  - component: {fileID: 16368564498062267}
+  m_Layer: 0
+  m_Name: Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5001508452623523734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414231252600536430}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.38, y: 6.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2260407986054875326}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &16368564498062267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414231252600536430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455212031890e184da1024c43f599571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Cost>k__BackingField: 3
+  <MaxCooldown>k__BackingField: 5
+  _chargeSpeed: 14
+  _chargeTurnRate: 20
+  _chargeDuration: 3
+--- !u!1 &7640864370180527832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6584051909330972744}
+  - component: {fileID: 4766864117885057378}
+  m_Layer: 0
+  m_Name: Flame Parry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6584051909330972744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7640864370180527832}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.38, y: 6.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2260407986054875326}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4766864117885057378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7640864370180527832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105043aabc0e00d4e86b0109b5353eb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Cost>k__BackingField: 3
+  <MaxCooldown>k__BackingField: 1
 --- !u!1 &8816460880125603703
 GameObject:
   m_ObjectHideFlags: 0
