@@ -1,0 +1,51 @@
+{
+    "name": "Player Controls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "89f234be-7d60-4ec2-a2f2-2d8de62e8c60",
+            "actions": [
+                {
+                    "name": "Direction",
+                    "type": "Value",
+                    "id": "50b51bd5-b78c-47d7-b5ad-7bab952247c0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cc81dd9c-d002-45e7-9657-e575c06138d4",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Mouse & Keyboard",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse & Keyboard",
+            "bindingGroup": "Mouse & Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
