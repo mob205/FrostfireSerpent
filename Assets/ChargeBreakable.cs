@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class ChargeBreakable : MonoBehaviour
 {
-    [SerializeField] private LayerMask _chargeLayer;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public void Break()
     {
-        if((_chargeLayer & (1 << other.gameObject.layer)) != 0)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

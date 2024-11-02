@@ -32,4 +32,12 @@ public class FlameParryAbility : Ability
         _health.IsDeflecting = false;
         _col.enabled = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out EnemyAI enemy))
+        {
+            Destroy(enemy.gameObject);
+        }
+    }
 }

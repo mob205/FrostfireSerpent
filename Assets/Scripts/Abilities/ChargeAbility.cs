@@ -9,6 +9,7 @@ public class ChargeAbility : Ability
     [SerializeField] private float _chargeSpeed;
     [SerializeField] private float _chargeTurnRate;
     [SerializeField] private float _chargeDuration;
+    [SerializeField] private float _breakRadius;
 
     private PlayerMovement _player;
     private Collider2D _col;
@@ -86,26 +87,20 @@ public class ChargeAbility : Ability
         StartCooldown();
     }
 
-    private IEnumerator ProcessCharge()
-    {
-        _player.MoveSpeed = _chargeSpeed;
-        _player.TurnRate = _chargeTurnRate;
-
-        _col.enabled = true;
-
-        yield return new WaitForSeconds(_chargeDuration);
-
-        _col.enabled = false;
-
-        _player.MoveSpeed = _prevSpeed;
-        _player.TurnRate = _prevTurnRate;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out EnemyAI enemy))
+        if (collision.TryGetComponent(out IChargeable _))
         {
-            Destroy(enemy.gameObject);
+            EndCharge();
+
+            var nearby = Physics2D.OverlapCircleAll(collision.transform.position, _breakRadius);
+            foreach(var hit in nearby)
+            {
+                if(hit.TryGetComponent(out IChargeable chargeable))
+                {
+                    chargeable.OnCharge();
+                }
+            }
         }
     }
 }
