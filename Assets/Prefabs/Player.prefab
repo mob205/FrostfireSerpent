@@ -240,6 +240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b789cde30fd2a494d920eb61307cf452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnSegmentChange:
+    m_PersistentCalls:
+      m_Calls: []
   _segment: {fileID: 8470332731558220370, guid: c08b10eeba4987948b0023f8e7793813, type: 3}
   _middleSprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   _endSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
@@ -425,7 +428,7 @@ GameObject:
   - component: {fileID: 5001508452623523734}
   - component: {fileID: 16368564498062267}
   - component: {fileID: 5282139604108204873}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,9 +464,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 3
   <MaxCooldown>k__BackingField: 5
+  <Sprite>k__BackingField: {fileID: 2747690628134850419, guid: a9716c16a44a94eed9b5c90fbf4d9bdd, type: 3}
+  _cancelDelay: 0.25
   _chargeSpeed: 14
   _chargeTurnRate: 20
   _chargeDuration: 3
+  _breakRadius: 2
 --- !u!61 &5282139604108204873
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -556,6 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 1
   <MaxCooldown>k__BackingField: 5
+  <Sprite>k__BackingField: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   _duration: 1
 --- !u!61 &1391519612608867336
 BoxCollider2D:

@@ -42,7 +42,14 @@ public class EnemyAI : MonoBehaviour
     {
         StartCoroutine(DelayedUpdate());
     }
-   
+
+    private void Update()
+    {
+        if (_curPatrolDelay > 0)
+        {
+            _curPatrolDelay -= Time.deltaTime;
+        }
+    }
     private IEnumerator DelayedUpdate()
     {
         while (true)
@@ -51,7 +58,7 @@ public class EnemyAI : MonoBehaviour
 
             _navAgent.isStopped = false;
             _nearest = _segmentDetector.GetNearest();
-            if (_nearest == null || !_nearest.Head.GetComponent<PlayerHealth>().IsAlive)
+            if (_nearest == null)
             {
                 RandomWalk();
                 continue;
@@ -102,11 +109,6 @@ public class EnemyAI : MonoBehaviour
 
     private void RandomWalk()
     {
-        if (_curPatrolDelay > 0)
-        {
-            _curPatrolDelay -= Time.deltaTime;
-        }
-
         if (_navAgent.remainingDistance < .1 && _hasPatrolTarget)
         {
             _hasPatrolTarget = false;

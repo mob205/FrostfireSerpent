@@ -6850,18 +6850,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 16368564498062267, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _breakRadius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 16368564498062267, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _cancelDelay
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 16368564498062267, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: <Sprite>k__BackingField
-      value: 
-      objectReference: {fileID: 2747690628134850419, guid: a9716c16a44a94eed9b5c90fbf4d9bdd, type: 3}
     - target: {fileID: 2260407986054875326, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.51
@@ -6902,20 +6890,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 2040830051, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: -210923435, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[5]
+      value: 
+      objectReference: {fileID: -743276291, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 1893304701, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: _pumpkinSprites.Array.data[7]
+      value: 
+      objectReference: {fileID: -1856350535, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+    - target: {fileID: 4129314079002130617, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129314079002130617, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129314079002130617, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4515678388988823975, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: <Sprite>k__BackingField
-      value: 
-      objectReference: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    - target: {fileID: 7414231252600536430, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8816460880125603703, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
