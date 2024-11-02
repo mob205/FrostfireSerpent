@@ -1,11 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SegmentManager : MonoBehaviour
 {
     public int PlayerLength { get { return _segments.Count; } } 
     public IList<FollowSegment> Segments { get { return _segments.AsReadOnly(); } }
+
+    public UnityEvent<int> OnSegmentChange;
 
     [SerializeField] private FollowSegment _segment;
     [SerializeField] private Sprite _middleSprite;
@@ -29,7 +31,7 @@ public class SegmentManager : MonoBehaviour
     {
         AddSegment(_numStartingSegments);
     }
-
+    
     // Adds specified number of segments to the tail
     public void AddSegment(int numSegments)
     {
@@ -37,32 +39,6 @@ public class SegmentManager : MonoBehaviour
         {
             AddSegment();
         }
-    }
-    private void AddSegment()
-    {
-        // Create new segment and add it to end of snake
-        var newSegment = Instantiate(_segment, _endSegment.transform.position, _endSegment.transform.rotation);
-        newSegment.FollowTarget = _endSegment;
-        newSegment.Head = this;
-        newSegment.IsAttached = true;
-
-        newSegment.Initialize();
-
-        newSegment.name = $"Segment {_segments.Count - 1}";
-
-
-        _segments.Add(newSegment);
-
-        // Update sprites accordingly
-        // This will probably change if we end up doing 8-directional sprites instead of pure topdown 2D
-        if(_endSegment != _headSegment)
-        {
-            _endSegment.SetSprite(_middleSprite);
-        }
-        newSegment.SetSprite(_endSprite);
-
-        // Update what our tail is
-        _endSegment = newSegment;
     }
     
     // Detaches all segments starting from the tail to specified segment
@@ -142,8 +118,41 @@ public class SegmentManager : MonoBehaviour
         lastSegment.Head = null;
         lastSegment.IsAttached = false;
 
-        _endSegment = _segments[_segments.Count - 1];
+        if(_segments.Count != 0)
+        {
+            _endSegment = _segments[_segments.Count - 1];
+        }
+
+        OnSegmentChange?.Invoke(PlayerLength);
 
         return lastSegment;
+    }
+
+    private void AddSegment()
+    {
+        // Create new segment and add it to end of snake
+        var newSegment = Instantiate(_segment, _endSegment.transform.position, _endSegment.transform.rotation);
+        newSegment.FollowTarget = _endSegment;
+        newSegment.Head = this;
+        newSegment.IsAttached = true;
+
+        newSegment.Initialize();
+
+        newSegment.name = $"Segment {_segments.Count - 1}";
+
+        _segments.Add(newSegment);
+
+        // Update sprites accordingly
+        // This will probably change if we end up doing 8-directional sprites instead of pure topdown 2D
+        if (_endSegment != _headSegment)
+        {
+            _endSegment.SetSprite(_middleSprite);
+        }
+        newSegment.SetSprite(_endSprite);
+
+        // Update what our tail is
+        _endSegment = newSegment;
+
+        OnSegmentChange?.Invoke(PlayerLength);
     }
 }

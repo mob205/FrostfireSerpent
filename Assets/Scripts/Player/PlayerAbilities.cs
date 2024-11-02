@@ -44,4 +44,13 @@ public class PlayerAbilities : MonoBehaviour
             CastAbility(1);
         }
     }
+
+    public Ability GetAbility(int idx)
+    {
+        if(idx < _abilities.Length)
+        {
+            return _abilities[idx];
+        }
+        return _abilities[0];
+    }
 }

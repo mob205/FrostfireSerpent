@@ -7,8 +7,13 @@ public abstract class Ability : MonoBehaviour
     public abstract void CastAbility();
     
     [field: SerializeField] public int Cost { get; protected set; }
+
     [field: SerializeField] public float MaxCooldown { get; protected set; }
+
     public float CurrentCooldown { get; protected set; }
+
+    [field: SerializeField] public Sprite Sprite { get; private set; }
+
 
     protected void StartCooldown()
     {

@@ -21,6 +21,7 @@ public class ChargeAbility : Ability
     private float _prevTurnRate;
 
     private int _cost;
+    private float _maxCooldown;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class ChargeAbility : Ability
         _col.enabled = false;
 
         _cost = Cost;
+        _maxCooldown = MaxCooldown;
     }
 
     private void Update()
@@ -65,10 +67,10 @@ public class ChargeAbility : Ability
         _isCharging = true;
         _chargeRemaining = _chargeDuration;
 
-
         _col.enabled = true;
 
         Cost = 0;
+        MaxCooldown = _cancelDelay;
 
         StartCooldown(_cancelDelay);
     }
@@ -83,6 +85,7 @@ public class ChargeAbility : Ability
         _col.enabled = false;
 
         Cost = _cost;
+        MaxCooldown = _maxCooldown;
 
         StartCooldown();
     }
