@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _turnRate;
+    [field: SerializeField] public float MoveSpeed { get; set; }
+    [field: SerializeField] public float TurnRate { get; set; }
 
     private Camera _camera;
     private Rigidbody2D _rb;
@@ -30,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
         // Rotate toward the cursor
         transform.rotation = Quaternion.RotateTowards(transform.rotation, 
             Quaternion.FromToRotation(Vector2.right, _frameDirection), 
-            _turnRate * Time.fixedDeltaTime);
+            TurnRate * Time.fixedDeltaTime);
 
-        _rb.velocity = _moveSpeed * Time.fixedDeltaTime * transform.right;
+        _rb.velocity = MoveSpeed * Time.fixedDeltaTime * transform.right;
     }
 }
