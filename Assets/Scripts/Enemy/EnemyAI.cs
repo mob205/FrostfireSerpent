@@ -82,8 +82,7 @@ public class EnemyAI : MonoBehaviour
 
         var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
 
-        var dir = (_nearest.transform.position - transform.position).normalized;
-        projectile.SetDirection(dir);
+        projectile.Direction = (_nearest.transform.position - transform.position).normalized;
 
         StartCoroutine(ResetAttack());
     }

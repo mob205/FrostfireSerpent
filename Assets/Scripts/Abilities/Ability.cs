@@ -6,17 +6,23 @@ public abstract class Ability : MonoBehaviour
 {
     public abstract void CastAbility();
     
-    [field: SerializeField] public int Cost { get; private set; }
-    [field: SerializeField] public float MaxCooldown { get; private set; }
+    [field: SerializeField] public int Cost { get; protected set; }
+    [field: SerializeField] public float MaxCooldown { get; protected set; }
     public float CurrentCooldown { get; protected set; }
 
     protected void StartCooldown()
     {
-        StartCoroutine(CooldownImpl());
+        StartCooldown(MaxCooldown);
     }
-    private IEnumerator CooldownImpl()
+
+    protected void StartCooldown(float cooldown)
     {
-        CurrentCooldown = MaxCooldown;
+        StartCoroutine(CooldownImpl(cooldown));
+    }
+
+    private IEnumerator CooldownImpl(float cooldown)
+    {
+        CurrentCooldown = cooldown;
         while(CurrentCooldown > 0)
         {
             CurrentCooldown -= Time.deltaTime;

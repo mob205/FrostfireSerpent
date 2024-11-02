@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public Vector3 Direction
+    {
+        get { return _rb.velocity.normalized; }
+        set { _rb.velocity = value * _projectileSpeed; }
+    }
+    public bool IsDeflected { get; set; }
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _projectileLifetime;
 
@@ -19,17 +25,17 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, _projectileLifetime);
     }
 
-    public void SetDirection(Vector3 direction)
-    {
-        _rb.velocity = direction * _projectileSpeed;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out FollowSegment segment) && segment.IsAttached && segment.Head)
+        if (!IsDeflected && collision.TryGetComponent(out FollowSegment segment) && segment.IsAttached && segment.Head)
         {
-            segment.Head.DetachSegment(segment);
+            segment.Head.GetComponent<PlayerHealth>().Damage(segment, this);
         }
 
+        if(IsDeflected && collision.TryGetComponent(out EnemyAI enemy))
+        {
+            Destroy(enemy.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

@@ -24,8 +24,8 @@ public class PlayerAbilities : MonoBehaviour
         // Use ability cost + 1 to leave a tail
         if(ability.CurrentCooldown <= 0 && _segmentManager.PlayerLength > (ability.Cost + 1))
         {
+            _segmentManager.DestroySegments(ability.Cost);
             ability.CastAbility();
-            _segmentManager.DetachSegments(ability.Cost);
         }
     }
 

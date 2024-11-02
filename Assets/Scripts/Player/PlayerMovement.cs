@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     [field: SerializeField] public float MoveSpeed { get; set; }
     [field: SerializeField] public float TurnRate { get; set; }
 
+    public bool AllowMovement { get; set; } = true;
+
     private Camera _camera;
     private Rigidbody2D _rb;
 
@@ -27,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(!AllowMovement)
+        {
+            _rb.velocity = Vector2.zero;
+            return;
+        }
+
         // Rotate toward the cursor
         transform.rotation = Quaternion.RotateTowards(transform.rotation, 
             Quaternion.FromToRotation(Vector2.right, _frameDirection), 

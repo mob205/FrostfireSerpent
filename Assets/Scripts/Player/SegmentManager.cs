@@ -29,6 +29,8 @@ public class SegmentManager : MonoBehaviour
     {
         AddSegment(_numStartingSegments);
     }
+
+    // Adds specified number of segments to the tail
     public void AddSegment(int numSegments)
     {
         for(int i = 0; i < numSegments; i++)
@@ -42,12 +44,12 @@ public class SegmentManager : MonoBehaviour
         var newSegment = Instantiate(_segment, _endSegment.transform.position, _endSegment.transform.rotation);
         newSegment.FollowTarget = _endSegment;
         newSegment.Head = this;
+        newSegment.IsAttached = true;
 
         newSegment.Initialize();
 
         newSegment.name = $"Segment {_segments.Count - 1}";
 
-        newSegment.IsAttached = true;
 
         _segments.Add(newSegment);
 
@@ -59,18 +61,23 @@ public class SegmentManager : MonoBehaviour
         }
         newSegment.SetSprite(_endSprite);
 
+        // Update what our tail is
         _endSegment = newSegment;
     }
-
+    
+    // Detaches all segments starting from the tail to specified segment
     public void DetachSegment(FollowSegment segment)
     {
         int numSegments = 0;
         FollowSegment _curSeg = _endSegment;
+
+        // Count how many segments are in the section to delete
         while(_curSeg != null && _curSeg != segment && _curSeg != _headSegment)
         {
             numSegments++;
             _curSeg = _curSeg.FollowTarget;
         }
+
         if(_curSeg == null || _curSeg == _headSegment)
         {
             Debug.LogError("Segment not found.");
@@ -81,6 +88,7 @@ public class SegmentManager : MonoBehaviour
         }
     }
 
+    // Detaches the last numSegments segments without destroying them
     public void DetachSegments(int numSegments)
     {
         if (numSegments <= 0 || PlayerLength == 1) return;
@@ -90,6 +98,8 @@ public class SegmentManager : MonoBehaviour
         for (i = 0; i < numSegments; i++)
         {
             var removed = RemoveSegment();
+
+            // Segment of null means it couldn't be removed, so don't add it to the pickup
             if (!removed) { break; }
 
             // Set up detached segment to be picked up 
@@ -107,6 +117,7 @@ public class SegmentManager : MonoBehaviour
         _endSegment.SetSprite(_endSprite);
     }
 
+    // Destroys the last numSegments segments
     public void DestroySegments(int numSegments)
     {
         for (int i = 0; i < numSegments; i++)
