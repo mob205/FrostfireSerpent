@@ -7,15 +7,14 @@ public class SnakeCircleDetector : MonoBehaviour
     [SerializeField] private float _circleCooldown;
 
     [SerializeField] private LayerMask _enclosableLayers;
-    [SerializeField] GameObject _debugCircleCenter;
-    private SegmentManager segmentManager;
+    private SegmentManager _segmentManager;
 
     private bool _canCircle = true;
     private const int MAXHITS = 15;
 
     private void Awake()
     {
-        segmentManager = GetComponentInParent<SegmentManager>();
+        _segmentManager = GetComponentInParent<SegmentManager>();
     }
 
     private IEnumerator ResetCooldown()
@@ -37,7 +36,7 @@ public class SnakeCircleDetector : MonoBehaviour
     // Triggers Enclose on all IEnclosables in the shortest loop from the end segment to the head
     private void MakeCircle(FollowSegment endSegment)
     {
-        var segments = segmentManager.Segments;
+        var segments = _segmentManager.Segments;
 
         List<FollowSegment> circleSegments = GetCircleSegments(endSegment, segments);
 
@@ -55,24 +54,22 @@ public class SnakeCircleDetector : MonoBehaviour
         centerY /= circleSegments.Count;
 
         Vector3 center = new Vector3((float)centerX, (float)centerY, 0);
-        _debugCircleCenter.transform.position = center;
 
         // Shoot rays from each segment to the center to approximate the enclosed shape
         RaycastHit2D[] hits = new RaycastHit2D[MAXHITS];
         foreach (var segment in circleSegments)
         {
-            var diff = center - transform.position;
+            var diff = center - segment.transform.position;
             int numHits = Physics2D.RaycastNonAlloc(segment.transform.position, diff, hits, diff.magnitude, _enclosableLayers);
             Debug.DrawLine(segment.transform.position, center, Color.red, 5f);
 
-            Debug.Log(numHits);
+            // Loop through all hits and check if it's enclosable
             for(int i = 0; i < numHits; i++)
             {
                 var hit = hits[i];
                 if(!hit || !hit.collider) { continue; }
                 if(hit.collider.TryGetComponent(out IEnclosable enclosable) && enclosable.CanEnclose)
                 {
-                    Debug.Log($"Enclosing {hit.collider.name}");
                     enclosable.Enclose();
                 }
             }
