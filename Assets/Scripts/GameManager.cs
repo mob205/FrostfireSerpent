@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     private PlayerHealth player;
     [SerializeField] private Canvas gameoverUI;
+    [SerializeField] private Canvas gameWinUI;
 
     private int maxEnemySpawnMod = 3;
 
@@ -68,6 +69,6 @@ public class GameManager : MonoBehaviour
 
     private void OnGameEnd()
     {
-        Debug.Log("game complete!");
+        gameWinUI.gameObject.SetActive(true);
     }
 }
