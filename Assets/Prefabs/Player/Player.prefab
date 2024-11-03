@@ -417,10 +417,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _circleCooldown: 1
   _minCircleCount: 4
-  _particles: {fileID: 3407040584481926018, guid: 81da1fb62abbfa940924ae03ecb4214f, type: 3}
   _enclosableLayers:
     serializedVersion: 2
     m_Bits: 64
+  _particles: {fileID: 3407040584481926018, guid: 81da1fb62abbfa940924ae03ecb4214f, type: 3}
+  _camShakeIntensity: 10
+  _camShakeDuration: 0.2
 --- !u!58 &6332806134200248725
 CircleCollider2D:
   m_ObjectHideFlags: 0
