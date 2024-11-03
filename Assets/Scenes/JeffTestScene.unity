@@ -244,9 +244,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToSpawn: {fileID: 1983579588}
-  numToPool: 10
-  spawnRate: 0
-  spawnAreaRadius: 3
+  numToPool: 50
+  spawnRate: 120
+  spawnAreaRadius: 14.99
+  minimumDistanceFromCenter: 9.04
+  minDistanceFromOtherObjects: 0
   spawnAreaVisualColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1704030973
 Transform:
@@ -341,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 1983579588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5698858, y: -0.16905907, z: 0.005380599}
+  m_LocalPosition: {x: 8.89, y: 5.02, z: 0.005380599}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
@@ -12,6 +10,7 @@ public class ObjectPooler : MonoBehaviour
         for (int i = 0; i < numToPool; i++)
         {
             pool[i] = Instantiate(go, parentObject.transform);
+            pool[i].SetActive(false);
         }
 
         return pool;
