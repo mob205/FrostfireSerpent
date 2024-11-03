@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0a5eac6acf6384bb9e59950a5b6572, type: 3}
+  m_Name: On Lose
+  m_EditorClassIdentifier: 
+  Clips:
+  - {fileID: 8300000, guid: 007652ab12b24bb48b3edd5da82f1548, type: 3}
+  MinPitch: 1
+  MaxPitch: 1
+  MinVolume: 1
+  MaxVolume: 1
