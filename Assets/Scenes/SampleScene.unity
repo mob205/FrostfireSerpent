@@ -6905,61 +6905,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3588831326058397056, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _particles
-      value: 
-      objectReference: {fileID: 3407040584481926018, guid: 81da1fb62abbfa940924ae03ecb4214f, type: 3}
-    - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _rotateTarget
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4129314079002130617, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4515678388988823975, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_ColorMax.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_ColorMax.g
-      value: 0.29529953
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_ColorMax.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_GradientMax.key0.b
-      value: 0.48661664
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_GradientMax.key0.g
-      value: 0.052652176
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_GradientMax.key0.r
-      value: 0.5471698
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_GradientMax.key1.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_GradientMax.key1.g
-      value: 0.096226394
-      objectReference: {fileID: 0}
-    - target: {fileID: 4766864117885057378, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
-      propertyPath: _gradient.m_GradientMax.key1.r
-      value: 0.9161715
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
