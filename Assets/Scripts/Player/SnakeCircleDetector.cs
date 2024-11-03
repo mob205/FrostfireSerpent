@@ -6,6 +6,9 @@ public class SnakeCircleDetector : MonoBehaviour
 {
     [SerializeField] private float _circleCooldown;
 
+    [SerializeField] private int _minCircleCount = 4;
+    [SerializeField] private ParticleSystem _particles;
+
     [SerializeField] private LayerMask _enclosableLayers;
     private SegmentManager _segmentManager;
 
@@ -40,6 +43,8 @@ public class SnakeCircleDetector : MonoBehaviour
 
         List<FollowSegment> circleSegments = GetCircleSegments(endSegment, segments);
 
+        if(circleSegments.Count < _minCircleCount) { return; }
+
         // Get center of the enclosed area.
         // Use double to hopefully minimize floating point imprecision when adding
         double centerX = 0; 
@@ -54,6 +59,8 @@ public class SnakeCircleDetector : MonoBehaviour
         centerY /= circleSegments.Count;
 
         Vector3 center = new Vector3((float)centerX, (float)centerY, 0);
+
+        Instantiate(_particles, center, Quaternion.identity);
 
         // Shoot rays from each segment to the center to approximate the enclosed shape
         RaycastHit2D[] hits = new RaycastHit2D[MAXHITS];
