@@ -6,10 +6,13 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
 
+    [SerializeField]
     private GameObject objectToSpawn;
     [Tooltip("How many of the object should be pooled on start. This will be the maximum number that can be active/on screen at once at the start of the game.")]
     [SerializeField]
     private int numToPool;
+
+    [HideInInspector]
     public GameObject[] objectPool;
 
     private void Awake()

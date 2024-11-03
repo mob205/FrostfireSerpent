@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     private int maxEnemySpawnMod = 3;
 
+    public delegate void HouseDestroyedDelegate();
+    public HouseDestroyedDelegate houseDestroyedDel;
+
     private void Awake()
     {
         if (Instance != null)
@@ -48,11 +51,23 @@ public class GameManager : MonoBehaviour
     private void OnHouseDestroyed()
     {
         numDestructiblesLeft--;
-        enemySpawnMod = Mathf.Lerp(1, 3, Mathf.InverseLerp(destructibles.Length, 0, numDestructiblesLeft));
+        enemySpawnMod = Mathf.Lerp(1, maxEnemySpawnMod, Mathf.InverseLerp(destructibles.Length, 0, numDestructiblesLeft));
+        houseDestroyedDel.Invoke();
+
+        if (numDestructiblesLeft == 0)
+        {
+            OnGameEnd();
+        }
+
     }
 
     private void OnPlayerDeath()
     {
         gameoverUI.gameObject.SetActive(true);
+    }
+
+    private void OnGameEnd()
+    {
+        Debug.Log("game complete!");
     }
 }
