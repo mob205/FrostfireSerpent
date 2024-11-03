@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private GameObject objectToSpawn;
     [Tooltip("How many of the object should be pooled on start. This will be the maximum number that can be active/on screen at once at the start of the game.")]
-    [SerializeField]
+
     private int numToPool;
 
     [HideInInspector]
@@ -27,6 +27,7 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        numToPool = GameManager.Instance.destructibles.Length;
         objectPool = ObjectPooler.CreateObjectPool(objectToSpawn, numToPool);
     }
 

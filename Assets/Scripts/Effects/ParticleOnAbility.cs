@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ParticleOnAbility : MonoBehaviour
 {
     [SerializeField] private int _abilityIdx;
     [SerializeField] private ParticleSystem.MinMaxGradient _activeGradient;
 
+    [SerializeField] private Color _activeLightColor;
+    [SerializeField] private Color _inactiveLightColor;
+
     private ParticleSystem.MinMaxGradient _inactiveGradient;
     private ParticleSystem _particles;
     private FollowSegment _followSegment;
-
-    private Ability _ability;
+    private Light2D _light;
+    
+    private PlayerAbilities _ability;
 
     private void Awake()
     {
         _followSegment = GetComponent<FollowSegment>();
+        _light = GetComponentInChildren<Light2D>();
 
         _particles = GetComponentInChildren<ParticleSystem>();
         _inactiveGradient = _particles.colorOverLifetime.color.gradient;
@@ -24,18 +30,36 @@ public class ParticleOnAbility : MonoBehaviour
     {
         if(_followSegment && _followSegment.Head)
         {
-            _ability = _followSegment.Head.GetComponent<PlayerAbilities>().GetAbility(_abilityIdx);
-            _ability.OnAbilityCast.AddListener(OnCast);
-            _ability.OnAbilityEnd.AddListener(OnEnd);
+            _ability = _followSegment.Head.GetComponent<PlayerAbilities>();
+
+            _ability.OnAbilityStatusChange += OnStatusChange;
+
+            if(_light)
+            {
+                _light.color = _inactiveLightColor;
+            }
         }
     }
-    private void OnCast()
+    private void OnStatusChange(bool status)
     {
-        SetParticleColor(_activeGradient);
-    }
-    private void OnEnd()
-    {
-        SetParticleColor(_inactiveGradient);
+        if(status)
+        {
+            SetParticleColor(_activeGradient);
+
+            if(_light)
+            {
+                _light.color = _activeLightColor;
+            }
+        }
+        else
+        {
+            SetParticleColor(_inactiveGradient);
+
+            if(_light)
+            {
+                _light.color = _inactiveLightColor;
+            }
+        }
     }
     private void SetParticleColor(ParticleSystem.MinMaxGradient gradient)
     {
@@ -47,8 +71,7 @@ public class ParticleOnAbility : MonoBehaviour
     {
         if(_ability)
         {
-            _ability.OnAbilityCast.RemoveListener(OnCast);
-            _ability.OnAbilityEnd.RemoveListener(OnEnd);
+            _ability.OnAbilityStatusChange -= OnStatusChange;
         }
     }
 }
