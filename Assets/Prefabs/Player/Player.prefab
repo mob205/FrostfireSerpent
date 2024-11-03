@@ -511,7 +511,7 @@ MonoBehaviour:
       m_Calls: []
   <Cost>k__BackingField: 3
   <MaxCooldown>k__BackingField: 5
-  <Sprite>k__BackingField: {fileID: 2747690628134850419, guid: a9716c16a44a94eed9b5c90fbf4d9bdd, type: 3}
+  <Sprite>k__BackingField: {fileID: -1321175269, guid: d625108498642a545b2816a6728937fb, type: 3}
   _cancelDelay: 0.25
   _chargeSpeed: 14
   _chargeTurnRate: 20
@@ -619,7 +619,7 @@ MonoBehaviour:
       m_Calls: []
   <Cost>k__BackingField: 1
   <MaxCooldown>k__BackingField: 5
-  <Sprite>k__BackingField: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  <Sprite>k__BackingField: {fileID: 548853736, guid: d625108498642a545b2816a6728937fb, type: 3}
   _duration: 1
 --- !u!61 &1391519612608867336
 BoxCollider2D:
