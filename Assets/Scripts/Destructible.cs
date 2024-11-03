@@ -6,6 +6,7 @@ public class Destructible : MonoBehaviour, IEnclosable, IChargeable
     [SerializeField] private bool _destroyByEnclose = true;
     [SerializeField] private bool _destroyByCharge = true;
     [SerializeField] private float _shrinkDuration;
+    [SerializeField] private GameObject _ruinsPrefab;
     public bool CanEnclose { get; private set; } = true;
 
     public delegate void DestroyedDel();
@@ -31,7 +32,15 @@ public class Destructible : MonoBehaviour, IEnclosable, IChargeable
     {
         var tween = transform.DOScale(0, _shrinkDuration);
         tween.SetEase(Ease.InBounce);
-        tween.onComplete += () => Destroy(gameObject);
+        tween.onComplete += FinishDestruction;
         destroyedDel?.Invoke();
+    }
+    private void FinishDestruction()
+    {
+        if(_ruinsPrefab)
+        {
+            Instantiate(_ruinsPrefab, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 }
