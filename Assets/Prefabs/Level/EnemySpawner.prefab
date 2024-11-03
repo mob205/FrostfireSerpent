@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5301071374958806369
+--- !u!1 &4227823028532561078
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2731067004148137574}
-  - component: {fileID: 3484013300266089092}
-  - component: {fileID: 2556284738425932906}
+  - component: {fileID: 1172869892361666866}
+  - component: {fileID: 3347749259481492154}
+  - component: {fileID: 5111375572716156606}
   m_Layer: 0
-  m_Name: VertebraeSpawner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2731067004148137574
+--- !u!4 &1172869892361666866
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5301071374958806369}
+  m_GameObject: {fileID: 4227823028532561078}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 63.4, y: -57.5, z: -0.33527067}
+  m_LocalPosition: {x: 0.1, y: -6, z: -919.12244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &3484013300266089092
+--- !u!58 &3347749259481492154
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5301071374958806369}
+  m_GameObject: {fileID: 4227823028532561078}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -68,27 +68,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2556284738425932906
+--- !u!114 &5111375572716156606
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5301071374958806369}
+  m_GameObject: {fileID: 4227823028532561078}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42bd6f462016e7645a8a7b33e9980d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnerType: 1
-  objectToPool: {fileID: 4193095813917670843, guid: 1f3ad0893e2dd8341a2036276a59d1b8, type: 3}
-  spawnRate: 5
-  spawnAreaRadius: 50
-  objectCap: 50
-  minimumDistanceFromCenter: 20
-  minDistanceFromOtherObjects: 20
+  spawnerType: 0
+  objectToPool: {fileID: 2133627582879521888, guid: b41b954e220d6214bb2b960a35bfa9cf, type: 3}
+  spawnRate: 3
+  spawnAreaRadius: 1.5
+  objectCap: 0
+  minimumDistanceFromCenter: 0
+  minDistanceFromOtherObjects: 0
   objectMask:
     serializedVersion: 2
-    m_Bits: 256
-  onlySpawnWhenInTrigger: 0
-  spawnAreaVisualColor: {r: 0.01234436, g: 1, b: 0, a: 1}
+    m_Bits: 512
+  onlySpawnWhenInTrigger: 1
+  spawnAreaVisualColor: {r: 1, g: 0, b: 0, a: 1}
