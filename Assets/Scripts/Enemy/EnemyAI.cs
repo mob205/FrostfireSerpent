@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,8 +21,13 @@ public class EnemyAI : MonoBehaviour, IEnclosable
     [SerializeField] private float _patrolRetargetMaxDelay;
     [SerializeField] private float _patrolDistance;
 
+    [Header("Animators")]
+    [SerializeField] private RuntimeAnimatorController _maleAnim;
+    [SerializeField] private RuntimeAnimatorController _femaleAnim;
+
     private NavMeshAgent _navAgent;
     private SegmentDetector _segmentDetector;
+    private Animator _anim;
 
     private FollowSegment _nearest;
 
@@ -37,6 +43,19 @@ public class EnemyAI : MonoBehaviour, IEnclosable
         _segmentDetector = GetComponentInChildren<SegmentDetector>();
 
         _navAgent = GetComponent<NavMeshAgent>();
+
+        _anim = GetComponent<Animator>();
+
+        float mOrFAnim = Random.value;
+        if (mOrFAnim > 0.5f)
+        {
+            _anim.runtimeAnimatorController = _maleAnim;
+        }
+        else
+        {
+            _anim.runtimeAnimatorController = _femaleAnim;
+        }
+
         _navAgent.updateRotation = false;
         _navAgent.updateUpAxis = false;
     }
@@ -91,6 +110,10 @@ public class EnemyAI : MonoBehaviour, IEnclosable
     {
         if (!_canAttack) { return; }
 
+        _anim.SetBool("Walk", false);
+
+        _anim.SetTrigger("Attack");
+
         var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
 
         projectile.Direction = (_nearest.transform.position - transform.position).normalized;
@@ -100,11 +123,15 @@ public class EnemyAI : MonoBehaviour, IEnclosable
 
     private void Chase()
     {
+        _anim.SetBool("Walk", true);
+
         _navAgent.SetDestination(_nearest.transform.position);
     }
 
     private void Flee()
     {
+        _anim.SetBool("Walk", true);
+
         // Get direction going from nearest segment to enemy. This is the direction to run away from the player
         Vector3 dir = (new Vector3(transform.position.x, transform.position.y, 0) - _nearest.transform.position).normalized;
 
@@ -113,6 +140,8 @@ public class EnemyAI : MonoBehaviour, IEnclosable
 
     private void RandomWalk()
     {
+        _anim.SetBool("Walk", true);
+
         if (_navAgent.remainingDistance < .1 && _hasPatrolTarget)
         {
             _hasPatrolTarget = false;
