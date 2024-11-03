@@ -850,9 +850,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 280856704823853993, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 280856704823853993, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 3649ccec15513e649b162c43916e25d7, type: 3}
+    - target: {fileID: 280856704823853993, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 280856704823853993, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -4493409427144991683, guid: 405cccb60317d9644b51bbc61f3b0c95, type: 2}
+    - target: {fileID: 4324189275870194116, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361314997005203721, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
+      propertyPath: _loop
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6361314997005203721, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -901,7 +921,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4324189275870194116, guid: 17449173eca19ee4fadf638ca68afc0a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

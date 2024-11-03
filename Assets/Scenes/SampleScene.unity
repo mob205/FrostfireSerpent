@@ -3836,6 +3836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numDestructiblesLeft: 0
   gameoverUI: {fileID: 1843963821}
+  gameWinUI: {fileID: 0}
 --- !u!4 &1128295442
 Transform:
   m_ObjectHideFlags: 0
