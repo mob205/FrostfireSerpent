@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class SnakeCircleDetector : MonoBehaviour
 {
+    [Tooltip("Cooldown to form a circle")]
     [SerializeField] private float _circleCooldown;
 
+    [Tooltip("Minimum number of segments needed to form a circle")]
     [SerializeField] private int _minCircleCount = 4;
+
+    [Tooltip("Layers that are IEnclosable")]
     [SerializeField] private LayerMask _enclosableLayers;
+
+    //[Tooltip("Displacement from the origin of the segment away from the center to start raycast")]
+    //[SerializeField] private float _segmentOffset;
 
     [Header("Effects")]
     [SerializeField] private ParticleSystem _particles;
@@ -74,7 +81,7 @@ public class SnakeCircleDetector : MonoBehaviour
         foreach (var segment in circleSegments)
         {
             var diff = center - segment.transform.position;
-            int numHits = Physics2D.RaycastNonAlloc(segment.transform.position, diff, hits, diff.magnitude, _enclosableLayers);
+            int numHits = Physics2D.RaycastNonAlloc(segment.transform.position/* - (_segmentOffset * diff.normalized)*/, diff, hits, diff.magnitude, _enclosableLayers);
             Debug.DrawLine(segment.transform.position, center, Color.red, 5f);
 
             // Loop through all hits and check if it's enclosable
