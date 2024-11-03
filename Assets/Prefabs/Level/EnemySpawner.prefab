@@ -86,9 +86,9 @@ MonoBehaviour:
   spawnAreaRadius: 1.5
   objectCap: 0
   minimumDistanceFromCenter: 0
-  minDistanceFromOtherObjects: 0
+  minDistanceFromOtherObjects: 2
   objectMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 576
   onlySpawnWhenInTrigger: 1
   spawnAreaVisualColor: {r: 1, g: 0, b: 0, a: 1}
