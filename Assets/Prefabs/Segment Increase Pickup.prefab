@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ad40d556ac10944a76b95321d9529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <NumSegments>k__BackingField: 0
+  minNumberSegments: 1
+  maxNumberSegments: 5
 --- !u!61 &5105239403100475398
 BoxCollider2D:
   m_ObjectHideFlags: 0

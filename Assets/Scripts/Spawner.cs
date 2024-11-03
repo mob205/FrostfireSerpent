@@ -138,7 +138,7 @@ public class Spawner : MonoBehaviour
         {
             foreach (GameObject obj in objectPool)
             {
-                if (!obj.activeInHierarchy)
+                if (obj && !obj.activeInHierarchy)
                 {
                     Debug.Log("enemy spawned");
                     obj.transform.position = spawnLocation;

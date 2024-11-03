@@ -342,7 +342,7 @@ MonoBehaviour:
   _segment: {fileID: 8470332731558220370, guid: c08b10eeba4987948b0023f8e7793813, type: 3}
   _middleSprite: {fileID: -1075762597, guid: 0dc9c6803f3291441bd583bc30097453, type: 3}
   _endSprite: {fileID: 362964482, guid: 0dc9c6803f3291441bd583bc30097453, type: 3}
-  _numStartingSegments: 20
+  _numStartingSegments: 25
   _detachedPickup: {fileID: 7422697420074170186, guid: 923cca73c51771348accb7c0b9675671, type: 3}
   _pickupDuration: 5
 --- !u!50 &1493229758798617149
@@ -1166,9 +1166,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   <Cost>k__BackingField: 1
-  <MaxCooldown>k__BackingField: 5
+  <MaxCooldown>k__BackingField: 4
   <Sprite>k__BackingField: {fileID: 548853736, guid: d625108498642a545b2816a6728937fb, type: 3}
-  _duration: 1
+  _duration: 1.5
   _parrySFX: {fileID: 11400000, guid: 60c897693576c8d43a61caf830ab3ccb, type: 2}
 --- !u!61 &1391519612608867336
 BoxCollider2D:
