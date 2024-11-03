@@ -26,7 +26,6 @@ public class CameraShakeManager : MonoBehaviour
     public void AddShake(float amount)
     {
         _noise.m_AmplitudeGain += amount;
-        Debug.Log(amount);
     }
     private IEnumerator AddShakeDelayed(float amount, float duration)
     {
