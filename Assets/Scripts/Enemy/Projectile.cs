@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _hitParticles;
     public Vector3 Direction
     {
         get { return _rb.velocity.normalized; }
@@ -31,11 +32,18 @@ public class Projectile : MonoBehaviour
         {
             segment.Head.GetComponent<PlayerHealth>().Damage(segment, this);
         }
-
-        if(IsDeflected && collision.TryGetComponent(out EnemyAI enemy))
+        else if(IsDeflected && collision.TryGetComponent(out EnemyAI enemy))
         {
             enemy.StartDeath();
-            Destroy(gameObject);
+            DestroyProjectile();
         }
+    }
+    public void DestroyProjectile()
+    {
+        if(_hitParticles)
+        {
+            Instantiate(_hitParticles, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 }
