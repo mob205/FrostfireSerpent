@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public float enemySpawnMod { get; private set; }
     public int numDestructiblesLeft;
 
+    private PlayerHealth player;
+    [SerializeField] private Canvas gameoverUI;
+
     private int maxEnemySpawnMod = 3;
 
     private void Awake()
@@ -15,13 +18,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(Instance);
         }
-
         Instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        player = FindObjectOfType<PlayerHealth>();
+        player.OnDeath.AddListener(OnPlayerDeath);
+
         destructibles = FindObjectsByType<Destructible>(FindObjectsSortMode.None);
         numDestructiblesLeft = destructibles.Length;
         enemySpawnMod = 1;
@@ -45,5 +50,10 @@ public class GameManager : MonoBehaviour
         numDestructiblesLeft--;
         enemySpawnMod = Mathf.Lerp(1, 3, Mathf.InverseLerp(destructibles.Length, 0, numDestructiblesLeft));
         Debug.Log(enemySpawnMod);
+    }
+
+    private void OnPlayerDeath()
+    {
+        gameoverUI.gameObject.SetActive(true);
     }
 }

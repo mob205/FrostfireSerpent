@@ -6,15 +6,17 @@ public class PlayerAbilities : MonoBehaviour
 {
     private Ability[] _abilities;
     private SegmentManager _segmentManager;
+    private PlayerHealth _health;
 
     private void Awake()
     {
         _abilities = GetComponentsInChildren<Ability>();
+        _health = GetComponent<PlayerHealth>();
         _segmentManager = GetComponent<SegmentManager>();
     }
     private void CastAbility(int abilityIdx)
     {
-        if(abilityIdx >= _abilities.Length)
+        if(abilityIdx >= _abilities.Length || !_health.IsAlive)
         {
             return;
         }

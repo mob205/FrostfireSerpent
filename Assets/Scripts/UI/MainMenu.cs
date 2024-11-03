@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Image _selector;
-    public void LoadLevel()
+    public void LoadLevel(int level)
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(level);
     }
     public void Quit()
     {
