@@ -13,8 +13,10 @@ public class SnakeCircleDetector : MonoBehaviour
     [SerializeField] private ParticleSystem _particles;
     [SerializeField] private float _camShakeIntensity;
     [SerializeField] private float _camShakeDuration;
+    [SerializeField] private AudioEvent _circleCompleteSFX;
 
     private SegmentManager _segmentManager;
+    private AudioSource _audio;
 
     private bool _canCircle = true;
     private const int MAXHITS = 15;
@@ -22,6 +24,7 @@ public class SnakeCircleDetector : MonoBehaviour
     private void Awake()
     {
         _segmentManager = GetComponentInParent<SegmentManager>();
+        _audio = GetComponent<AudioSource>();
     }
 
     private IEnumerator ResetCooldown()
@@ -143,6 +146,14 @@ public class SnakeCircleDetector : MonoBehaviour
     {
         Instantiate(_particles, position, Quaternion.identity);
 
-        if(CameraShakeManager.Instance) { CameraShakeManager.Instance.AddShake(_camShakeIntensity, _camShakeDuration); }
+        if(CameraShakeManager.Instance)
+        {
+            CameraShakeManager.Instance.AddShake(_camShakeIntensity, _camShakeDuration);
+        }
+
+        if(_circleCompleteSFX)
+        {
+            _circleCompleteSFX.Play(_audio);
+        }
     }
 }

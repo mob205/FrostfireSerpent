@@ -29,8 +29,13 @@ public class ChargeAbility : Ability
     [SerializeField] private float _impactCameraShakeIntensity;
     [SerializeField] private float _impactCameraShakeDuration;
 
+    [SerializeField] private AudioEvent _startChargeSFX;
+    [SerializeField] private AudioEvent _endChargeSFX;
+    [SerializeField] private AudioEvent _impactSFX;
+
     private PlayerMovement _player;
     private Collider2D _col;
+    private AudioSource _audio;
 
     private float _chargeRemaining;
     private bool _isCharging;
@@ -44,6 +49,7 @@ public class ChargeAbility : Ability
     private void Awake()
     {
         _player = GetComponentInParent<PlayerMovement>();
+        _audio = GetComponent<AudioSource>();
         _col = GetComponent<Collider2D>();
         _col.enabled = false;
 
@@ -59,7 +65,6 @@ public class ChargeAbility : Ability
         if(_chargeRemaining <= 0)
         {
             EndCharge();
-            Debug.Log("A");
         }
     }
 
@@ -72,7 +77,6 @@ public class ChargeAbility : Ability
         else
         {
             EndCharge();
-            Debug.Log("B");
         }
     }
 
@@ -93,6 +97,7 @@ public class ChargeAbility : Ability
         MaxCooldown = _cancelDelay;
 
         if(CameraShakeManager.Instance) { CameraShakeManager.Instance.AddShake(_chargeCameraShakeIntensity); }
+        if(_startChargeSFX) { _startChargeSFX.Play(_audio); }
 
         StartCooldown(_cancelDelay);
         OnAbilityCast?.Invoke();
@@ -111,6 +116,7 @@ public class ChargeAbility : Ability
         MaxCooldown = _maxCooldown;
 
         if (CameraShakeManager.Instance) { CameraShakeManager.Instance.AddShake(-_chargeCameraShakeIntensity); }
+        if (_endChargeSFX) { _endChargeSFX.Play(_audio); }
 
         StartCooldown();
         OnAbilityEnd?.Invoke();
@@ -130,16 +136,25 @@ public class ChargeAbility : Ability
                     chargeable.OnCharge();
                 }
             }
+            PlayImpactEffects(collision.transform.position);
+        }
+    }
 
-            if(_impactParticles)
-            {
-                Instantiate(_impactParticles, collision.transform.position, Quaternion.identity);
-            }
+    private void PlayImpactEffects(Vector3 position)
+    {
+        if (_impactParticles)
+        {
+            Instantiate(_impactParticles, position, Quaternion.identity);
+        }
 
-            if(CameraShakeManager.Instance)
-            {
-                CameraShakeManager.Instance.AddShake(_impactCameraShakeIntensity, _impactCameraShakeDuration);
-            }
+        if (CameraShakeManager.Instance)
+        {
+            CameraShakeManager.Instance.AddShake(_impactCameraShakeIntensity, _impactCameraShakeDuration);
+        }
+
+        if(_impactSFX)
+        {
+            _impactSFX.Play(_audio);
         }
     }
 }
