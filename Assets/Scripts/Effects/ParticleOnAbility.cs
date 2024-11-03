@@ -8,6 +8,9 @@ public class ParticleOnAbility : MonoBehaviour
     [SerializeField] private int _abilityIdx;
     [SerializeField] private ParticleSystem.MinMaxGradient _activeGradient;
 
+    [SerializeField] private Color _activeLightColor;
+    [SerializeField] private Color _inactiveLightColor;
+
     private ParticleSystem.MinMaxGradient _inactiveGradient;
     private ParticleSystem _particles;
     private FollowSegment _followSegment;
@@ -18,7 +21,7 @@ public class ParticleOnAbility : MonoBehaviour
     private void Awake()
     {
         _followSegment = GetComponent<FollowSegment>();
-        _light = GetComponent<Light2D>();
+        _light = GetComponentInChildren<Light2D>();
 
         _particles = GetComponentInChildren<ParticleSystem>();
         _inactiveGradient = _particles.colorOverLifetime.color.gradient;
@@ -30,6 +33,11 @@ public class ParticleOnAbility : MonoBehaviour
             _ability = _followSegment.Head.GetComponent<PlayerAbilities>();
 
             _ability.OnAbilityStatusChange += OnStatusChange;
+
+            if(_light)
+            {
+                _light.color = _inactiveLightColor;
+            }
         }
     }
     private void OnStatusChange(bool status)
@@ -37,12 +45,20 @@ public class ParticleOnAbility : MonoBehaviour
         if(status)
         {
             SetParticleColor(_activeGradient);
-            _light.color = _activeGradient.colorMin;
+
+            if(_light)
+            {
+                _light.color = _activeLightColor;
+            }
         }
         else
         {
             SetParticleColor(_inactiveGradient);
-            _light.color = _inactiveGradient.colorMin;
+
+            if(_light)
+            {
+                _light.color = _inactiveLightColor;
+            }
         }
     }
     private void SetParticleColor(ParticleSystem.MinMaxGradient gradient)

@@ -160,6 +160,8 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
     m_ColorMin: {r: 0, g: 0, b: 0, a: 0}
     m_ColorMax: {r: 0, g: 0, b: 0, a: 0}
+  _activeLightColor: {r: 1, g: 0, b: 0, a: 1}
+  _inactiveLightColor: {r: 0.19433957, g: 0.42813936, b: 1, a: 1}
 --- !u!114 &6996603992803068124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1729,8 +1731,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0, b: 0, a: 1}
-        key1: {r: 1, g: 0.945058, b: 0, a: 1}
+        key0: {r: 0, g: 0.32814908, b: 0.78113204, a: 1}
+        key1: {r: 0.33951584, g: 0.81832325, b: 0.9622642, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
