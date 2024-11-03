@@ -29,8 +29,9 @@ public class HeadSpriteAnimator : MonoBehaviour
 
     private void Update()
     {
-        int spriteIdx = Mathf.FloorToInt((_movement.Forward.eulerAngles.z / 360) * _numSprites) % _numSprites;
+        int spriteIdx = Mathf.FloorToInt(_movement.Forward.eulerAngles.z * _numSprites / 360) % _numSprites;
 
+        if(spriteIdx > _numSprites) { Debug.Log("Something went wrong"); }
         if(_abilities.IsAbilityActive)
         {
             _sprite.sprite = _glowingSprites[spriteIdx];

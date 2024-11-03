@@ -7,9 +7,13 @@ public class SnakeCircleDetector : MonoBehaviour
     [SerializeField] private float _circleCooldown;
 
     [SerializeField] private int _minCircleCount = 4;
-    [SerializeField] private ParticleSystem _particles;
-
     [SerializeField] private LayerMask _enclosableLayers;
+
+    [Header("Effects")]
+    [SerializeField] private ParticleSystem _particles;
+    [SerializeField] private float _camShakeIntensity;
+    [SerializeField] private float _camShakeDuration;
+
     private SegmentManager _segmentManager;
 
     private bool _canCircle = true;
@@ -60,7 +64,7 @@ public class SnakeCircleDetector : MonoBehaviour
 
         Vector3 center = new Vector3((float)centerX, (float)centerY, 0);
 
-        Instantiate(_particles, center, Quaternion.identity);
+        PlayEffects(center);
 
         // Shoot rays from each segment to the center to approximate the enclosed shape
         RaycastHit2D[] hits = new RaycastHit2D[MAXHITS];
@@ -134,5 +138,11 @@ public class SnakeCircleDetector : MonoBehaviour
             cur = parents[cur];
         }
         return res;
+    }
+    private void PlayEffects(Vector3 position)
+    {
+        Instantiate(_particles, position, Quaternion.identity);
+
+        if(CameraShakeManager.Instance) { CameraShakeManager.Instance.AddShake(_camShakeIntensity, _camShakeDuration); }
     }
 }

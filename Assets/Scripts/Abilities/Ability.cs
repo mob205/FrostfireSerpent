@@ -8,7 +8,8 @@ public abstract class Ability : MonoBehaviour
 
     public UnityEvent OnAbilityCast;
     public UnityEvent OnAbilityEnd;
-    
+
+    [field: Header("General")]
     [field: SerializeField] public int Cost { get; protected set; }
 
     [field: SerializeField] public float MaxCooldown { get; protected set; }

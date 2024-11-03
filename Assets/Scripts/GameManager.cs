@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     {
         numDestructiblesLeft--;
         enemySpawnMod = Mathf.Lerp(1, 3, Mathf.InverseLerp(destructibles.Length, 0, numDestructiblesLeft));
-        Debug.Log(enemySpawnMod);
     }
 
     private void OnPlayerDeath()

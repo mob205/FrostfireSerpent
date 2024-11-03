@@ -515,6 +515,10 @@ MonoBehaviour:
   _chargeTurnRate: 20
   _chargeDuration: 3
   _breakRadius: 2
+  _impactParticles: {fileID: 701560211624500061, guid: 3a9a2f28049f1b1489ea3b6248e9b4de, type: 3}
+  _chargeCameraShakeIntensity: 2
+  _impactCameraShakeIntensity: 10
+  _impactCameraShakeDuration: 0.35
 --- !u!61 &5282139604108204873
 BoxCollider2D:
   m_ObjectHideFlags: 0

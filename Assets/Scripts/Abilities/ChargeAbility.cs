@@ -5,11 +5,29 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class ChargeAbility : Ability
 {
+    [Header("Charge")]
+    [Tooltip("Delay before the player can cancel the charge by recasting")]
     [SerializeField] private float _cancelDelay;
+
+    [Tooltip("Rate at which the player moves when charging")]
     [SerializeField] private float _chargeSpeed;
+
+    [Tooltip("Rate at which the player can turn when charging")]
     [SerializeField] private float _chargeTurnRate;
+
+    [Tooltip("Max duration of the charge ability")]
     [SerializeField] private float _chargeDuration;
+
+    [Tooltip("Radius around the impact point to destroy other buildings")]
     [SerializeField] private float _breakRadius;
+
+    [Header("Effects")]
+    [Tooltip("Particles to play at the impact site")]
+    [SerializeField] private ParticleSystem _impactParticles;
+
+    [SerializeField] private float _chargeCameraShakeIntensity;
+    [SerializeField] private float _impactCameraShakeIntensity;
+    [SerializeField] private float _impactCameraShakeDuration;
 
     private PlayerMovement _player;
     private Collider2D _col;
@@ -41,6 +59,7 @@ public class ChargeAbility : Ability
         if(_chargeRemaining <= 0)
         {
             EndCharge();
+            Debug.Log("A");
         }
     }
 
@@ -53,6 +72,7 @@ public class ChargeAbility : Ability
         else
         {
             EndCharge();
+            Debug.Log("B");
         }
     }
 
@@ -64,13 +84,15 @@ public class ChargeAbility : Ability
         _player.MoveSpeed = _chargeSpeed;
         _player.TurnRate = _chargeTurnRate;
 
-        _isCharging = true;
         _chargeRemaining = _chargeDuration;
+        _isCharging = true;
 
         _col.enabled = true;
 
         Cost = 0;
         MaxCooldown = _cancelDelay;
+
+        if(CameraShakeManager.Instance) { CameraShakeManager.Instance.AddShake(_chargeCameraShakeIntensity); }
 
         StartCooldown(_cancelDelay);
         OnAbilityCast?.Invoke();
@@ -88,13 +110,15 @@ public class ChargeAbility : Ability
         Cost = _cost;
         MaxCooldown = _maxCooldown;
 
+        if (CameraShakeManager.Instance) { CameraShakeManager.Instance.AddShake(-_chargeCameraShakeIntensity); }
+
         StartCooldown();
         OnAbilityEnd?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out IChargeable _))
+        if (collision.TryGetComponent(out IChargeable _) && _isCharging)
         {
             EndCharge();
 
@@ -105,6 +129,16 @@ public class ChargeAbility : Ability
                 {
                     chargeable.OnCharge();
                 }
+            }
+
+            if(_impactParticles)
+            {
+                Instantiate(_impactParticles, collision.transform.position, Quaternion.identity);
+            }
+
+            if(CameraShakeManager.Instance)
+            {
+                CameraShakeManager.Instance.AddShake(_impactCameraShakeIntensity, _impactCameraShakeDuration);
             }
         }
     }
