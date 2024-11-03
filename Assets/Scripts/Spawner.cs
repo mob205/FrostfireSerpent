@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private SpawnerType spawnerType;
 
+    [SerializeField]
+    private GameObject objectToPool;
 
     [Space]
     [SerializeField]
@@ -36,6 +38,14 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     [Tooltip("Minimum distance object can spawn from other spawned objects.")]
     private float minDistanceFromOtherObjects;
+
+    [SerializeField]
+    [Tooltip("Mask of layers to keep min distance from when spawning.")]
+    private LayerMask objectMask;
+
+    [SerializeField]
+    [Tooltip("If checked, will only spawn when player is within the trigger collider.")]
+    private bool onlySpawnWhenInTrigger;
 
     [Space]
     [Header("Editor Fields")]
@@ -60,13 +70,30 @@ public class Spawner : MonoBehaviour
         else if (spawnerType == SpawnerType.Vertebrae)
         {
             // need to create vertebrae pool manager script/object
+            objectPool = ObjectPooler.CreateObjectPool(objectToPool, 50);
         }
 
         numObjectsActive = 0;
-        isActive = true;
+        if (onlySpawnWhenInTrigger)
+        {
+            isActive = false;
+        }
+        else
+        {
+            isActive = true;
+        }
 
         // start w random offset for spawnTime
         spawnTimer = Random.Range(0, 60 / spawnRate);
+    }
+
+    private void OnEnable()
+    {
+        GameManager.Instance.houseDestroyedDel += UpdateEnemyObjectCap;
+    }    
+    private void OnDisable()
+    {
+        GameManager.Instance.houseDestroyedDel -= UpdateEnemyObjectCap;
     }
 
     // Update is called once per frame
@@ -141,15 +168,16 @@ public class Spawner : MonoBehaviour
 
         while (!validSpawnPosFound && spawnAttemptsCounter < maxNumSpawnAttemps)
         {
-            Quaternion rotation = Quaternion.identity;
+            Quaternion rotation = new Quaternion();
             rotation.eulerAngles = new Vector3(0, 0, Random.value * 360);
-            Vector3 randPos = new Vector3();
-            randPos.x = Random.Range(transform.position.x + minimumDistanceFromCenter, transform.position.x + spawnAreaRadius);
+            Vector3 randPos = Vector3.zero;
+            randPos.x = Random.Range(minimumDistanceFromCenter, spawnAreaRadius);
 
             randPos = rotation * randPos;
+            randPos += transform.position;
 
             // check if other objects are nearby
-            RaycastHit2D circleHit = Physics2D.CircleCast(randPos, minDistanceFromOtherObjects, Vector3.zero);
+            RaycastHit2D circleHit = Physics2D.CircleCast(randPos, minDistanceFromOtherObjects, Vector3.zero, 1, objectMask);
 
             if (circleHit.collider == null)
             {
@@ -187,14 +215,25 @@ public class Spawner : MonoBehaviour
         objectCap = newCap;
     }
 
+    private void UpdateEnemyObjectCap()
+    {
+        SetObjectCap(GameManager.Instance.numDestructiblesLeft);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // add layer/tag check for player and enable collision
+        if (onlySpawnWhenInTrigger && collision.gameObject.name == "Player")
+        {
+            isActive = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        // add layer/tag check for player and disable collision
+        if (onlySpawnWhenInTrigger && collision.gameObject.name == "Player")
+        {
+            isActive = false;
+        }
     }
 
     private void OnDrawGizmos()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 807897670513118942}
   - component: {fileID: 5105239403100475398}
   - component: {fileID: 105974015646362113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Segment Increase Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ad40d556ac10944a76b95321d9529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numSegments: 2
+  <NumSegments>k__BackingField: 0
 --- !u!61 &5105239403100475398
 BoxCollider2D:
   m_ObjectHideFlags: 0
