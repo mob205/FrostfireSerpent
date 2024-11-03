@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class HeadSpriteAnimator : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class HeadSpriteAnimator : MonoBehaviour
     private PlayerMovement _movement;
     private PlayerAbilities _abilities;
     private SpriteRenderer _sprite;
+    private Light2D _light;
 
     private void Awake()
     {
@@ -24,6 +26,7 @@ public class HeadSpriteAnimator : MonoBehaviour
         _movement = GetComponent<PlayerMovement>(); 
         _abilities = GetComponent<PlayerAbilities>();
         _sprite = GetComponent<SpriteRenderer>();
+        _light = GetComponentInChildren<Light2D>();
 
     }
 
@@ -42,10 +45,12 @@ public class HeadSpriteAnimator : MonoBehaviour
         if(_abilities.IsAbilityActive)
         {
             _sprite.sprite = _glowingSprites[spriteIdx];
+            _light.enabled = true;
         }
         else
         {
             _sprite.sprite = _pumpkinSprites[spriteIdx];
+            _light.enabled = false;
         }
     }
 }
