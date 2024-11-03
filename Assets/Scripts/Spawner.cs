@@ -1,27 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class Spawner : MonoBehaviour
 {
     // can be used to spawn enemies, vertebrae, or any additional items appearing throughout play
 
+    public enum SpawnerType
+    {
+        Enemy,
+        Vertebrae,
+        Other
+    }
+
     [SerializeField]
-    private GameObject objectToSpawn;
-    [Tooltip("How many of the object should be pooled on start. This will be the maximum number that can be active/on screen at once at the start of the game.")]
-    [SerializeField]
-    private int numToPool;
+    private SpawnerType spawnerType;
+
 
     [Space]
     [SerializeField]
     [Tooltip("How many enemies will spawn within one minute (ex: 10 = one enemy spawn every 6 seconds")]
     private float spawnRate;
+
     [SerializeField]
     [Tooltip("Radius of 0 will have objects always spawning exactly at the location of the spawner.")]
     private float spawnAreaRadius;
+
+    [SerializeField]
+    [Tooltip("How many objects can be currently spawned at once.")]
+    private int objectCap;
+
     [SerializeField]
     [Tooltip("Minimum distance the object will spawn from the center of the spawner. Can be used to create ring-shaped spawn areas.")]
     private float minimumDistanceFromCenter;
+
+    [SerializeField]
+    [Tooltip("Minimum distance object can spawn from other spawned objects.")]
+    private float minDistanceFromOtherObjects;
 
     [Space]
     [Header("Editor Fields")]
@@ -31,18 +45,28 @@ public class Spawner : MonoBehaviour
 
     private bool isActive;
     private float spawnTimer;
+    private float maxNumSpawnAttemps = 8; // max number of times the game will try to spawn an object if it continues to be too close to other objects
 
-    private int currentObjectCap; // how many objects can currently spawned at once
     private int numObjectsActive; // how many objects are currently spawned in the scene
     private GameObject[] objectPool;
 
     // Start is called before the first frame update
     void Start()
     {
-        objectPool = ObjectPooler.CreateObjectPool(objectToSpawn, numToPool);
+        if (spawnerType == SpawnerType.Enemy)
+        {
+            objectPool = EnemyManager.Instance.objectPool;
+        }
+        else if (spawnerType == SpawnerType.Vertebrae)
+        {
+            // need to create vertebrae pool manager script/object
+        }
+
         numObjectsActive = 0;
-        currentObjectCap = numToPool;
         isActive = true;
+
+        // start w random offset for spawnTime
+        spawnTimer = Random.Range(0, 60 / spawnRate);
     }
 
     // Update is called once per frame
@@ -50,10 +74,22 @@ public class Spawner : MonoBehaviour
     {
         if (!isActive) return;
 
-        if (spawnTimer > 60 / spawnRate)
+        float amountOfTimeBtwSpawns = 60 / spawnRate;
+        if (spawnerType == SpawnerType.Enemy)
         {
-            SpawnObject(GetRandomSpawnLocation());
-            spawnTimer = 0;
+            amountOfTimeBtwSpawns /= GameManager.Instance.enemySpawnMod;
+        }
+
+        if (spawnTimer > amountOfTimeBtwSpawns)
+        {
+            Vector3 spawnPos = GetRandomSpawnLocation();
+            
+            // check if a valid spawn pos was found
+            if (spawnPos != Vector3.zero)
+            {
+                SpawnObject(spawnPos);
+                spawnTimer = 0;
+            }
         }
 
         spawnTimer += Time.deltaTime;
@@ -61,7 +97,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnObject(Vector3 spawnLocation)
     {
-        if (numObjectsActive < currentObjectCap)
+        if (numObjectsActive < objectCap)
         {
             foreach (GameObject obj in objectPool)
             {
@@ -72,7 +108,7 @@ public class Spawner : MonoBehaviour
 
                     numObjectsActive++;
 
-                    if (numObjectsActive >= currentObjectCap)
+                    if (numObjectsActive >= objectCap)
                     {
                         EnableSpawner(false);
                     }
@@ -91,7 +127,7 @@ public class Spawner : MonoBehaviour
         objectToDespawn.SetActive(false);
         numObjectsActive--;
 
-        if (!isActive && numObjectsActive < currentObjectCap)
+        if (!isActive && numObjectsActive < objectCap)
         {
             EnableSpawner(true);
         }
@@ -99,14 +135,35 @@ public class Spawner : MonoBehaviour
 
     private Vector3 GetRandomSpawnLocation()
     {
-        Quaternion rotation = Quaternion.identity;
-        rotation.eulerAngles = new Vector3(0, 0, Random.value * 360);
-        Vector3 randPos = new Vector3();
-        randPos.x = Random.Range(transform.position.x + minimumDistanceFromCenter, transform.position.x + spawnAreaRadius);
+        bool validSpawnPosFound = false;
+        int spawnAttemptsCounter = 0;
+        Vector3 spawnPos = Vector3.zero;
 
-        randPos = rotation * randPos;
+        while (!validSpawnPosFound && spawnAttemptsCounter < maxNumSpawnAttemps)
+        {
+            Quaternion rotation = Quaternion.identity;
+            rotation.eulerAngles = new Vector3(0, 0, Random.value * 360);
+            Vector3 randPos = new Vector3();
+            randPos.x = Random.Range(transform.position.x + minimumDistanceFromCenter, transform.position.x + spawnAreaRadius);
 
-        return randPos;
+            randPos = rotation * randPos;
+
+            // check if other objects are nearby
+            RaycastHit2D circleHit = Physics2D.CircleCast(randPos, minDistanceFromOtherObjects, Vector3.zero);
+
+            if (circleHit.collider == null)
+            {
+                validSpawnPosFound = true;
+                spawnPos = randPos;
+            }
+            else
+            {
+                spawnAttemptsCounter++;
+            }
+        }
+
+        if (spawnPos == Vector3.zero) Debug.Log("couldn't find valid spawn point");
+        return spawnPos;
     }
 
     public void EnableSpawner(bool enable)
@@ -127,7 +184,17 @@ public class Spawner : MonoBehaviour
 
     public void SetObjectCap(int newCap)
     {
-        currentObjectCap = newCap;
+        objectCap = newCap;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // add layer/tag check for player and enable collision
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        // add layer/tag check for player and disable collision
     }
 
     private void OnDrawGizmos()
