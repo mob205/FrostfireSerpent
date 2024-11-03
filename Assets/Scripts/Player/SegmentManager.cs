@@ -15,6 +15,7 @@ public class SegmentManager : MonoBehaviour
     [SerializeField] private int _numStartingSegments;
 
     [SerializeField] private SegmentPickup _detachedPickup;
+    [SerializeField] private float _pickupDuration = 5f;
 
     private List<FollowSegment> _segments = new List<FollowSegment>();
 
@@ -88,8 +89,10 @@ public class SegmentManager : MonoBehaviour
             {
                 col.usedByComposite = true;
             }
+            removed.TriggerDetach();
         }
         pickup.NumSegments = i;
+        Destroy(pickup, _pickupDuration);
         _endSegment.SetSprite(_endSprite);
     }
 

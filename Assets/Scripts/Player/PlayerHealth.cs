@@ -48,6 +48,7 @@ public class PlayerHealth : MonoBehaviour
         foreach (var segment in _segmentManager.Segments)
         {
             segment.IsAttached = false;
+            segment.TriggerDetach();
         }
     }
 }

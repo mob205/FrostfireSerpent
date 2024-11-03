@@ -12,6 +12,7 @@ public class FollowSegment : MonoBehaviour
     public bool IsAttached { get; set; } = true;
 
     public UnityEvent OnInitialized;
+    public UnityEvent OnDetach;
 
     public IList<FollowSegment> IncidentSegments { get { return _incidentSegments.AsReadOnly(); } }
     private List<FollowSegment> _incidentSegments = new List<FollowSegment>();
@@ -35,6 +36,10 @@ public class FollowSegment : MonoBehaviour
         OnInitialized?.Invoke();
     }
 
+    public void TriggerDetach()
+    {
+        OnDetach?.Invoke();
+    }
 
     private void Update()
     {

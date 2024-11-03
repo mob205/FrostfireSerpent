@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 76430034328834668}
   - component: {fileID: 8470332731558220370}
   - component: {fileID: 6014400906318454982}
+  - component: {fileID: 6996603992803068124}
   - component: {fileID: -2619119710736087136}
   - component: {fileID: -7559712576492782542}
   m_Layer: 0
@@ -56,6 +57,21 @@ MonoBehaviour:
       - m_Target: {fileID: 6014400906318454982}
         m_TargetAssemblyTypeName: ParticleOnAbility, Assembly-CSharp
         m_MethodName: Initialize
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDetach:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6996603992803068124}
+        m_TargetAssemblyTypeName: FadeOnDetach, Assembly-CSharp
+        m_MethodName: StartFade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -142,6 +158,20 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
     m_ColorMin: {r: 0, g: 0, b: 0, a: 0}
     m_ColorMax: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &6996603992803068124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94984031055137553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda6195c864ddb4791cdc97090cc7f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleDecayDuration: 1
+  _spriteDecayDuration: 5
 --- !u!61 &-2619119710736087136
 BoxCollider2D:
   m_ObjectHideFlags: 0
