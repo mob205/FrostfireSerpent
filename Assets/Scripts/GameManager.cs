@@ -11,10 +11,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas gameoverUI;
     [SerializeField] private Canvas gameWinUI;
 
+    [SerializeField] private AudioEvent _gameoverSFX;
+    [SerializeField] private AudioEvent _gamewinSFX;
+
     private int maxEnemySpawnMod = 3;
 
     public delegate void HouseDestroyedDelegate();
     public HouseDestroyedDelegate houseDestroyedDel;
+
+    private AudioSource _audio;
 
     private void Awake()
     {
@@ -26,6 +31,8 @@ public class GameManager : MonoBehaviour
 
         player = FindObjectOfType<PlayerHealth>();
         player.OnDeath.AddListener(OnPlayerDeath);
+
+        _audio = GetComponent<AudioSource>();
 
         destructibles = FindObjectsByType<Destructible>(FindObjectsSortMode.None);
 
@@ -81,10 +88,18 @@ public class GameManager : MonoBehaviour
     private void OnPlayerDeath()
     {
         gameoverUI.gameObject.SetActive(true);
+        if(_gameoverSFX)
+        {
+            _gameoverSFX.Play(_audio);
+        }
     }
 
     private void OnGameEnd()
     {
         gameWinUI.gameObject.SetActive(true);
+        if(_gamewinSFX)
+        {
+            _gamewinSFX.Play(_audio);
+        }
     }
 }
