@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleDecayDuration: 1
   _spriteDecayDuration: 5
+  _lightDecayDuration: 5
 --- !u!61 &-2619119710736087136
 BoxCollider2D:
   m_ObjectHideFlags: 0
