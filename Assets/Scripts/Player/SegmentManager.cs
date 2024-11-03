@@ -152,6 +152,7 @@ public class SegmentManager : MonoBehaviour
             _endSegment.SetSprite(_middleSprite);
         }
         newSegment.SetSprite(_endSprite);
+        newSegment.TriggerAttach();
 
         // Update what our tail is
         _endSegment = newSegment;

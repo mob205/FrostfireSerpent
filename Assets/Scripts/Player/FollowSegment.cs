@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using DG.Tweening;
 
 public class FollowSegment : MonoBehaviour
 {
     [SerializeField] private float _followDistance;
+
+    [SerializeField] private float _popupDuration;
 
     public SegmentManager Head { get; set; }
     public FollowSegment FollowTarget { get; set; }
@@ -18,6 +21,7 @@ public class FollowSegment : MonoBehaviour
     private List<FollowSegment> _incidentSegments = new List<FollowSegment>();
 
     private SpriteRenderer _spriteRenderer;
+
     private void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -39,6 +43,14 @@ public class FollowSegment : MonoBehaviour
     public void TriggerDetach()
     {
         OnDetach?.Invoke();
+    }
+
+    public void TriggerAttach()
+    {
+        var targetTransform = transform.localScale;
+        transform.localScale = new Vector3(targetTransform.x, 0, 0);
+        var tween = transform.DOScale(targetTransform, _popupDuration);
+        tween.SetEase(Ease.OutElastic);
     }
 
     private void Update()
@@ -73,5 +85,10 @@ public class FollowSegment : MonoBehaviour
         {
             _incidentSegments.Remove(incidentSegment);
         }
+    }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 }

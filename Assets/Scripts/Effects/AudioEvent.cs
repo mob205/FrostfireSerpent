@@ -12,7 +12,7 @@ public class AudioEvent : ScriptableObject
 
     public void Play(AudioSource audioSource)
     {
-        if(!audioSource) { return; }
+        if(!audioSource || Clips.Length == 0) { return; }
 
         AudioClip clip = Clips[Random.Range(0, Clips.Length)];
         float pitch = Random.Range(MinPitch, MaxPitch);
