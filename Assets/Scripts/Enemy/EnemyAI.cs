@@ -3,12 +3,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IEnclosable
 {
     [Header("General")]
     [SerializeField] private float _retargetingDelay;
     [SerializeField] private float _attackRange;
     [SerializeField] private float _fleeRange;
+    [SerializeField] private bool _allowEncloseKill = true;
 
     [Header("Attacking")]
     [SerializeField] private float _attackSpeed;
@@ -29,6 +30,8 @@ public class EnemyAI : MonoBehaviour
 
     private bool _canAttack = true;
 
+    public bool CanEnclose { get; private set; } = true;
+
     private void Awake()
     {
         _segmentDetector = GetComponentInChildren<SegmentDetector>();
@@ -41,6 +44,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         StartCoroutine(DelayedUpdate());
+        CanEnclose = _allowEncloseKill;
     }
 
     private void Update()
@@ -138,5 +142,11 @@ public class EnemyAI : MonoBehaviour
         _canAttack = false;
         yield return new WaitForSeconds(1 / _attackSpeed);
         _canAttack = true;
+    }
+
+    public void Enclose()
+    {
+        Destroy(gameObject);
+        CanEnclose = false;
     }
 }

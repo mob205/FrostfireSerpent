@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _followDistance: 0.75
+  _popupDuration: 0.75
   OnInitialized:
     m_PersistentCalls:
       m_Calls:
