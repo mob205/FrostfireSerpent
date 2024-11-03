@@ -7,6 +7,9 @@ public class Destructible : MonoBehaviour, IEnclosable, IChargeable
     [SerializeField] private bool _destroyByCharge = true;
     [SerializeField] private float _shrinkDuration;
     [SerializeField] private GameObject _ruinsPrefab;
+
+    [Space]
+    [SerializeField] public bool _necessaryForGameWin;
     public bool CanEnclose { get; private set; } = true;
 
     public delegate void DestroyedDel();

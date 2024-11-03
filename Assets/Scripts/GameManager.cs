@@ -28,6 +28,22 @@ public class GameManager : MonoBehaviour
         player.OnDeath.AddListener(OnPlayerDeath);
 
         destructibles = FindObjectsByType<Destructible>(FindObjectsSortMode.None);
+
+        Destructible[] tempDestructibleHolder = new Destructible[FindObjectsByType<Destructible>(FindObjectsSortMode.None).Length];
+        int tempIndex = 0;
+
+        foreach (Destructible destructible in destructibles)
+        {
+
+            if (destructible._necessaryForGameWin)
+            {
+                tempDestructibleHolder[tempIndex] = destructible;
+                tempIndex++;
+            }
+        }
+
+        destructibles = tempDestructibleHolder;
+
         numDestructiblesLeft = destructibles.Length;
         enemySpawnMod = 1;
 
