@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         numDestructiblesLeft--;
         enemySpawnMod = Mathf.Lerp(1, maxEnemySpawnMod, Mathf.InverseLerp(destructibles.Length, 0, numDestructiblesLeft));
-        houseDestroyedDel.Invoke();
+        houseDestroyedDel?.Invoke();
 
         if (numDestructiblesLeft == 0)
         {
