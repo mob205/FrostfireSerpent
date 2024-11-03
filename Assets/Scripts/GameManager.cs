@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
         destructibles = FindObjectsByType<Destructible>(FindObjectsSortMode.None);
 
-        Destructible[] tempDestructibleHolder = new Destructible[FindObjectsByType<Destructible>(FindObjectsSortMode.None).Length];
+        Destructible[] tempDestructibleHolder = new Destructible[destructibles.Length];
         int tempIndex = 0;
 
         foreach (Destructible destructible in destructibles)
@@ -39,15 +39,16 @@ public class GameManager : MonoBehaviour
             {
                 tempDestructibleHolder[tempIndex] = destructible;
                 tempIndex++;
+                Debug.Log(tempIndex);
             }
         }
 
         destructibles = tempDestructibleHolder;
 
-        numDestructiblesLeft = destructibles.Length;
+        numDestructiblesLeft = tempIndex;
         enemySpawnMod = 1;
 
-        Debug.Log("Num destructibles: " + destructibles.Length + " Enemy mod: " + maxEnemySpawnMod);
+        Debug.Log("Num destructibles: " + numDestructiblesLeft + " Enemy mod: " + maxEnemySpawnMod);
     }
 
     // Start is called before the first frame update

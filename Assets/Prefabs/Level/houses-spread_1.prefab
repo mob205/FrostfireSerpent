@@ -103,6 +103,7 @@ MonoBehaviour:
   _destroyByCharge: 1
   _shrinkDuration: 0.3
   _ruinsPrefab: {fileID: 7318055321098884948, guid: 49ca62af8ab01bd45a686a9452229f36, type: 3}
+  _necessaryForGameWin: 1
 --- !u!61 &8475740826009819835
 BoxCollider2D:
   m_ObjectHideFlags: 0
