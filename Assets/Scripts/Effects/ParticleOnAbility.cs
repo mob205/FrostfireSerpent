@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ParticleOnAbility : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class ParticleOnAbility : MonoBehaviour
     private ParticleSystem.MinMaxGradient _inactiveGradient;
     private ParticleSystem _particles;
     private FollowSegment _followSegment;
-
-    private Ability _ability;
+    private Light2D _light;
+    
+    private PlayerAbilities _ability;
 
     private void Awake()
     {
         _followSegment = GetComponent<FollowSegment>();
+        _light = GetComponent<Light2D>();
 
         _particles = GetComponentInChildren<ParticleSystem>();
         _inactiveGradient = _particles.colorOverLifetime.color.gradient;
@@ -24,18 +27,23 @@ public class ParticleOnAbility : MonoBehaviour
     {
         if(_followSegment && _followSegment.Head)
         {
-            _ability = _followSegment.Head.GetComponent<PlayerAbilities>().GetAbility(_abilityIdx);
-            _ability.OnAbilityCast.AddListener(OnCast);
-            _ability.OnAbilityEnd.AddListener(OnEnd);
+            _ability = _followSegment.Head.GetComponent<PlayerAbilities>();
+
+            _ability.OnAbilityStatusChange += OnStatusChange;
         }
     }
-    private void OnCast()
+    private void OnStatusChange(bool status)
     {
-        SetParticleColor(_activeGradient);
-    }
-    private void OnEnd()
-    {
-        SetParticleColor(_inactiveGradient);
+        if(status)
+        {
+            SetParticleColor(_activeGradient);
+            _light.color = _activeGradient.colorMin;
+        }
+        else
+        {
+            SetParticleColor(_inactiveGradient);
+            _light.color = _inactiveGradient.colorMin;
+        }
     }
     private void SetParticleColor(ParticleSystem.MinMaxGradient gradient)
     {
@@ -47,8 +55,7 @@ public class ParticleOnAbility : MonoBehaviour
     {
         if(_ability)
         {
-            _ability.OnAbilityCast.RemoveListener(OnCast);
-            _ability.OnAbilityEnd.RemoveListener(OnEnd);
+            _ability.OnAbilityStatusChange -= OnStatusChange;
         }
     }
 }

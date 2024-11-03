@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerAbilities : MonoBehaviour
 {
     public bool IsAbilityActive { get { return _numAbilitiesActive > 0; } }
+
+    public event Action<bool> OnAbilityStatusChange;
 
     private Ability[] _abilities;
     private SegmentManager _segmentManager;
@@ -53,10 +56,18 @@ public class PlayerAbilities : MonoBehaviour
     public void OnAbilityCast(int idx)
     {
         ++_numAbilitiesActive;
+        if(_numAbilitiesActive == 1)
+        {
+            OnAbilityStatusChange?.Invoke(true);
+        }
     }
     public void OnAbilityEnd(int idx)
     {
         --_numAbilitiesActive;
+        if(_numAbilitiesActive == 0)
+        {
+            OnAbilityStatusChange?.Invoke(false);
+        }
     }
 
     public void CastAbility1(InputAction.CallbackContext context)
