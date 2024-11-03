@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
     [SerializeField] private bool _allowEncloseKill = true;
     [SerializeField] private bool _allowChargeKill = true;
     [SerializeField] private LayerMask _viewBlocking;
+    [SerializeField] private float _deathShrinkDuration;
 
     [Header("Attacking")]
     [SerializeField] private float _attackSpeed;
@@ -35,6 +37,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
     private bool _hasPatrolTarget;
 
     private bool _canAttack = true;
+    private bool _isDead;
 
     public bool CanEnclose { get; private set; } = true;
 
@@ -78,6 +81,8 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
         while (true)
         {
             yield return new WaitForSeconds(_retargetingDelay);
+
+            if(_isDead) {  continue; }
 
             _navAgent.isStopped = false;
             _nearest = _segmentDetector.GetNearest();
@@ -183,12 +188,23 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
 
     public void Enclose()
     {
-        Destroy(gameObject);
         CanEnclose = false;
+        StartDeath();
     }
 
     public void OnCharge()
     {
-        Destroy(gameObject);
+        if (_allowChargeKill)
+        {
+            StartDeath();
+        }
+    }
+
+    public void StartDeath()
+    {
+        _isDead = true;
+        var tween = transform.DOScale(0, _deathShrinkDuration);
+        tween.SetEase(Ease.InOutCubic);
+        tween.onComplete += () => Destroy(gameObject);
     }
 }

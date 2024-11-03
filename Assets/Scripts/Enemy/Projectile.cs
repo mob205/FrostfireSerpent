@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
 
         if(IsDeflected && collision.TryGetComponent(out EnemyAI enemy))
         {
-            Destroy(enemy.gameObject);
+            enemy.StartDeath();
             Destroy(gameObject);
         }
     }
