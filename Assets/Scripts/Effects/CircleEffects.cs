@@ -15,13 +15,14 @@ public class CircleEffects : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] private AudioEvent _circleCompleteSFX;
+    [SerializeField] private AudioEvent _witchLaughSFX;
 
-    private AudioSource _audio;
+    private AudioSource[] _audio;
     private PlayerAbilities _abilities;
 
     private void Awake()
     {
-        _audio = GetComponent<AudioSource>();
+        _audio = GetComponents<AudioSource>();
         _abilities = GetComponentInParent<PlayerAbilities>();
     }
     public void PlayEffects(Vector3 position)
@@ -42,9 +43,13 @@ public class CircleEffects : MonoBehaviour
             CameraShakeManager.Instance.AddShake(_camShakeIntensity, _camShakeDuration);
         }
 
-        if (_circleCompleteSFX)
+        if (_circleCompleteSFX && _audio.Length >= 1)
         {
-            _circleCompleteSFX.Play(_audio);
+            _circleCompleteSFX.Play(_audio[0]);
+        }
+        if(_witchLaughSFX && _audio.Length >= 2)
+        {
+            _witchLaughSFX.Play(_audio[1]);
         }
     }
 }

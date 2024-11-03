@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a5eac6acf6384bb9e59950a5b6572, type: 3}
   m_Name: Flame Parry
   m_EditorClassIdentifier: 
-  Clips: []
+  Clips:
+  - {fileID: 8300000, guid: 9ecf08670c4abd948aa8bb0731e55701, type: 3}
   MinPitch: 0.75
   MaxPitch: 1.15
   MinVolume: 0.5

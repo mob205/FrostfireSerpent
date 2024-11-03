@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a5eac6acf6384bb9e59950a5b6572, type: 3}
   m_Name: Vertebra Pickup
   m_EditorClassIdentifier: 
-  Clips: []
+  Clips:
+  - {fileID: 8300000, guid: 777e78558b9a84f4b9b0caba59069efd, type: 3}
   MinPitch: 1
   MaxPitch: 1
   MinVolume: 0.5

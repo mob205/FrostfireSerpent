@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
     [Header("Attacking")]
     [SerializeField] private float _attackSpeed;
     [SerializeField] private Projectile _projectile;
+    [SerializeField] private AudioEvent _attackSFX;
 
     [Header("Patrolling")]
     [SerializeField] private float _patrolRetargetMinDelay;
@@ -30,6 +31,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
     private NavMeshAgent _navAgent;
     private SegmentDetector _segmentDetector;
     private Animator _anim;
+    private AudioSource _audio;
 
     private FollowSegment _nearest;
 
@@ -46,6 +48,8 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
         _segmentDetector = GetComponentInChildren<SegmentDetector>();
 
         _navAgent = GetComponent<NavMeshAgent>();
+
+        _audio = GetComponent<AudioSource>();
 
         _anim = GetComponent<Animator>();
 
@@ -124,12 +128,12 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
         if (!_canAttack) { return; }
 
         _anim.SetBool("Walk", false);
-
         _anim.SetTrigger("Attack");
 
         var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
-
         projectile.Direction = (_nearest.transform.position - transform.position).normalized;
+
+        if(_attackSFX) { _attackSFX.Play(_audio); }
 
         StartCoroutine(ResetAttack());
     }

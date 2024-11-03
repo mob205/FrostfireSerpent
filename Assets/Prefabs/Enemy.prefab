@@ -140,6 +140,7 @@ MonoBehaviour:
   _deathShrinkDuration: 0.3
   _attackSpeed: 0.5
   _projectile: {fileID: 2196787657729312946, guid: 1c9ff19031d208040af566104f11c982, type: 3}
+  _attackSFX: {fileID: 11400000, guid: ef6b8e5b756e4dc4e915b2f11dcf1902, type: 2}
   _patrolRetargetMinDelay: 1
   _patrolRetargetMaxDelay: 5
   _patrolDistance: 20

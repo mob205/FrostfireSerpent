@@ -7,6 +7,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float _killLength;
 
     public UnityEvent OnDeath;
+
+    public UnityEvent OnDeflect;
+
     public bool IsAlive { get; private set; } = true;
 
     public bool IsDeflecting { get; set; }
@@ -26,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
         {
             source.IsDeflected = true;
             source.Direction = -source.Direction;
+            OnDeflect?.Invoke();
             return;
         }
 

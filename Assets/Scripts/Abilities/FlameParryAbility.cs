@@ -30,8 +30,6 @@ public class FlameParryAbility : Ability
         _health.IsDeflecting = true;
         _col.enabled = true;
 
-        if(_parrySFX) { _parrySFX.Play(_audio); }
-
         OnAbilityCast?.Invoke();
 
         yield return new WaitForSeconds(_duration);
@@ -48,5 +46,10 @@ public class FlameParryAbility : Ability
         {
             Destroy(enemy.gameObject);
         }
+    }
+
+    public void OnSuccessfulParry()
+    {
+        if (_parrySFX) { _parrySFX.Play(_audio); }
     }
 }
