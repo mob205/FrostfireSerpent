@@ -140,6 +140,7 @@ public class Spawner : MonoBehaviour
             {
                 if (!obj.activeInHierarchy)
                 {
+                    Debug.Log("enemy spawned");
                     obj.transform.position = spawnLocation;
                     obj.SetActive(true);
 
@@ -185,6 +186,7 @@ public class Spawner : MonoBehaviour
 
             randPos = rotation * randPos;
             randPos += transform.position;
+            randPos = new Vector3(randPos.x, randPos.y, 0);
 
             // check if other objects are nearby
             RaycastHit2D circleHit = Physics2D.CircleCast(randPos, minDistanceFromOtherObjects, Vector3.zero, 1, objectMask);

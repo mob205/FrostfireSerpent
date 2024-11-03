@@ -23,12 +23,14 @@ public class EnemyManager : MonoBehaviour
         }
 
         Instance = this;
+
+        numToPool = FindObjectsByType<Destructible>(FindObjectsSortMode.None).Length;
+        objectPool = ObjectPooler.CreateObjectPool(objectToSpawn, numToPool);
     }
     // Start is called before the first frame update
     void Start()
     {
-        numToPool = GameManager.Instance.destructibles.Length;
-        objectPool = ObjectPooler.CreateObjectPool(objectToSpawn, numToPool);
+
     }
 
     // Update is called once per frame
