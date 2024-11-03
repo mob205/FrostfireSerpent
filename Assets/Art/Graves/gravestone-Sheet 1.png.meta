@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cdc401ccad9e92844a87282318a83136
+guid: 99193cb8976e90a49b18a5ad30134a1a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: npc-2-walk-Sheet_0
+      name: gravestone-Sheet 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4eaf8722b4aabe4438ba59d7c7001de5
-      internalID: 1588039020
+      spriteID: 7b4b96b67484a394ca1b9c591fa55686
+      internalID: -525255935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc-2-walk-Sheet_1
+      name: gravestone-Sheet 1_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 24
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53d812eb37845ee43897421a348a3c78
-      internalID: -465654586
+      spriteID: 774f033282c256b4ba663d84b0cc945d
+      internalID: -1049369225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc-2-walk-Sheet_2
+      name: gravestone-Sheet 1_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 24
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0eea1f9522edd44a81686b385801062
-      internalID: -91441652
+      spriteID: 7e16739e01126574aae489743cddd530
+      internalID: -1332855806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: npc-2-walk-Sheet_3
+      name: gravestone-Sheet 1_3
       rect:
         serializedVersion: 2
-        x: 72
+        x: 96
         y: 0
-        width: 24
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8c9d0af00369e04eaaa5879961ac5e7
-      internalID: -845487437
+      spriteID: 671ca554728eb784c85c5dace9fe67f0
+      internalID: 239784043
       vertices: []
       indices: 
       edges: []
@@ -229,13 +229,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: 0c5356a4090232143a9bd765a9c13a8e, type: 3}
+    - texture: {fileID: 2800000, guid: 3a079769e54d0ef418d7b9563b610a13, type: 3}
       name: _NormalMap
     nameFileIdTable:
-      npc-2-walk-Sheet_0: 1588039020
-      npc-2-walk-Sheet_1: -465654586
-      npc-2-walk-Sheet_2: -91441652
-      npc-2-walk-Sheet_3: -845487437
+      gravestone-Sheet 1_0: -525255935
+      gravestone-Sheet 1_1: -1049369225
+      gravestone-Sheet 1_2: -1332855806
+      gravestone-Sheet 1_3: 239784043
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
