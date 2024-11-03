@@ -302,6 +302,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &68825763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -590,6 +591,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &164167503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -771,6 +773,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &179683109
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -936,6 +939,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &194376920
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1353,6 +1357,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &284938921
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1518,6 +1523,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &315228829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1935,6 +1941,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &626289312
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2415,6 +2422,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &748933383
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2832,6 +2840,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &860159414
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2997,6 +3006,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &876639205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3146,6 +3156,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &885996251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3624,6 +3635,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &961107692
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4272,6 +4284,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &1375630741
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5214,6 +5227,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &1726277628
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5457,6 +5471,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.1
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &1803085181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5690,6 +5705,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &1839912020
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5860,6 +5876,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &1876210618
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6528,6 +6545,7 @@ MonoBehaviour:
   _destroyByEnclose: 1
   _destroyByCharge: 1
   _shrinkDuration: 0.3
+  _ruinsPrefab: {fileID: 0}
 --- !u!212 &2076551084
 SpriteRenderer:
   m_ObjectHideFlags: 0

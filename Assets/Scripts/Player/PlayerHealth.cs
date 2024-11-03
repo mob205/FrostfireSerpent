@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
 
-        Destroy(source.gameObject);
+        source.DestroyProjectile();
 
         if (_segmentManager.PlayerLength <= _killLength)
         {
