@@ -118,7 +118,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            Debug.Log(objectToSpawn + " Spawner tried to spawn object but is at its cap!");
+            Debug.Log("Spawner tried to spawn object but is at its cap!");
         }
     }
 
