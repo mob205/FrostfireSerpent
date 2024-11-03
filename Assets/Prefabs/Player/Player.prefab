@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1493229758798617149}
   - component: {fileID: 5862026062055397358}
   - component: {fileID: 8693392674680268168}
+  - component: {fileID: 5566386369725255922}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -227,15 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 8
   <TurnRate>k__BackingField: 200
-  _pumpkinSprites:
-  - {fileID: 2040830051, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
-  - {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
-  - {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
-  - {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
-  - {fileID: -210923435, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
-  - {fileID: -743276291, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
-  - {fileID: 1893304701, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
-  - {fileID: -1856350535, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
 --- !u!114 &2492767040318085040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +340,36 @@ MonoBehaviour:
   OnDetach:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5566386369725255922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515678388988823975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93376e6e09abfa74d9db592eeda79369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pumpkinSprites:
+  - {fileID: 2040830051, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  - {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  - {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  - {fileID: 1438132432, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  - {fileID: -210923435, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  - {fileID: -743276291, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  - {fileID: 1893304701, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  - {fileID: -1856350535, guid: 308c6b75e54d42946bb02147270acd94, type: 3}
+  _glowingSprites:
+  - {fileID: 1319784157, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
+  - {fileID: -522027849, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
+  - {fileID: -522027849, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
+  - {fileID: -522027849, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
+  - {fileID: 1832462777, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
+  - {fileID: 1562867735, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
+  - {fileID: 287145811, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
+  - {fileID: -1716982842, guid: 81e57ce63a9a13746b62b564a5ea38e3, type: 3}
 --- !u!1 &5484876008883879668
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,6 +73,7 @@ public class ChargeAbility : Ability
         MaxCooldown = _cancelDelay;
 
         StartCooldown(_cancelDelay);
+        OnAbilityCast?.Invoke();
     }
 
     private void EndCharge()
@@ -88,6 +89,7 @@ public class ChargeAbility : Ability
         MaxCooldown = _maxCooldown;
 
         StartCooldown();
+        OnAbilityEnd?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

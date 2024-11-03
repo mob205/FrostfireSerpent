@@ -1569,17 +1569,6 @@ Transform:
   - {fileID: 1043687069}
   m_Father: {fileID: 144941762}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &507476807 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2389122210746656037, guid: 24b79de74e79d25419c9069be3a3378b, type: 3}
-  m_PrefabInstance: {fileID: 2538342465881759053}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &545143494
 GameObject:
   m_ObjectHideFlags: 0
@@ -5721,30 +5710,11 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!1 &1843963817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 627763069848745533, guid: 24b79de74e79d25419c9069be3a3378b, type: 3}
-  m_PrefabInstance: {fileID: 2538342465881759053}
-  m_PrefabAsset: {fileID: 0}
 --- !u!223 &1843963821 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 3431612345716691567, guid: 24b79de74e79d25419c9069be3a3378b, type: 3}
   m_PrefabInstance: {fileID: 2538342465881759053}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1843963823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843963817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92078cf697391f749a8dc2c3313939cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _image: {fileID: 507476807}
-  _fadeDuration: 1.5
 --- !u!1 &1876210615
 GameObject:
   m_ObjectHideFlags: 0
@@ -6681,10 +6651,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Over Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 627763069848745533, guid: 24b79de74e79d25419c9069be3a3378b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7939959000123707290, guid: 24b79de74e79d25419c9069be3a3378b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6768,10 +6734,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 627763069848745533, guid: 24b79de74e79d25419c9069be3a3378b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1843963823}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24b79de74e79d25419c9069be3a3378b, type: 3}
 --- !u!1001 &5471994519243618013
 PrefabInstance:

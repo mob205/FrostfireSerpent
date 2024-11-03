@@ -4,15 +4,26 @@ using UnityEngine.InputSystem;
 
 public class PlayerAbilities : MonoBehaviour
 {
+    public bool IsAbilityActive { get { return _numAbilitiesActive > 0; } }
+
     private Ability[] _abilities;
     private SegmentManager _segmentManager;
     private PlayerHealth _health;
+
+    private int _numAbilitiesActive;
 
     private void Awake()
     {
         _abilities = GetComponentsInChildren<Ability>();
         _health = GetComponent<PlayerHealth>();
         _segmentManager = GetComponent<SegmentManager>();
+
+
+        for(int i = 0; i < _abilities.Length; i++)
+        {
+            _abilities[i].OnAbilityCast.AddListener(() => OnAbilityCast(i));
+            _abilities[i].OnAbilityEnd.AddListener(() => OnAbilityEnd(i));
+        }
     }
     private void CastAbility(int abilityIdx)
     {
@@ -37,6 +48,15 @@ public class PlayerAbilities : MonoBehaviour
         {
             CastAbility(0);
         }
+    }
+
+    public void OnAbilityCast(int idx)
+    {
+        ++_numAbilitiesActive;
+    }
+    public void OnAbilityEnd(int idx)
+    {
+        --_numAbilitiesActive;
     }
 
     public void CastAbility1(InputAction.CallbackContext context)

@@ -6,26 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     [field: SerializeField] public float MoveSpeed { get; set; }
     [field: SerializeField] public float TurnRate { get; set; }
-
-    [SerializeField] private Sprite[] _pumpkinSprites;
     public bool AllowMovement { get; set; } = true;
 
     private Camera _camera;
     private Rigidbody2D _rb;
-    private SpriteRenderer _spriteRenderer;
-
     private Vector2 _frameDirection;
 
-    private int _numSprites;
-
-    private Quaternion forward = Quaternion.identity;
+    public Quaternion Forward { get; private set; } = Quaternion.identity;
 
     private void Start()
     {
         _camera = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _numSprites = _pumpkinSprites.Length;
     }
 
     // Maps mouse position to point
@@ -44,16 +36,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Rotate toward the cursor
-        forward = Quaternion.RotateTowards(forward, 
+        Forward = Quaternion.RotateTowards(Forward, 
             Quaternion.FromToRotation(Vector2.right, _frameDirection), 
             TurnRate * Time.fixedDeltaTime);
 
-        int spriteIdx = Mathf.FloorToInt((forward.eulerAngles.z / 360) * _numSprites);
-        if(spriteIdx < _pumpkinSprites.Length)
-        {
-            _spriteRenderer.sprite = _pumpkinSprites[spriteIdx];
-        }
-
-        _rb.velocity = MoveSpeed * (forward * Vector3.right);
+        _rb.velocity = MoveSpeed * (Forward * Vector3.right);
     }
 }
