@@ -85,15 +85,22 @@ public class Spawner : MonoBehaviour
 
         // start w random offset for spawnTime
         spawnTimer = Random.Range(0, 60 / spawnRate);
+
+        if (spawnerType == SpawnerType.Enemy)
+        {
+            UpdateEnemyObjectCap();
+        }
     }
 
     private void OnEnable()
     {
-        GameManager.Instance.houseDestroyedDel += UpdateEnemyObjectCap;
+        if (spawnerType == SpawnerType.Enemy)
+            GameManager.Instance.houseDestroyedDel += UpdateEnemyObjectCap;
     }    
     private void OnDisable()
     {
-        GameManager.Instance.houseDestroyedDel -= UpdateEnemyObjectCap;
+        if (spawnerType == SpawnerType.Enemy)
+            GameManager.Instance.houseDestroyedDel -= UpdateEnemyObjectCap;
     }
 
     // Update is called once per frame

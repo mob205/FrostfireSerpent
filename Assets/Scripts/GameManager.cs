@@ -22,11 +22,7 @@ public class GameManager : MonoBehaviour
             Destroy(Instance);
         }
         Instance = this;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         player = FindObjectOfType<PlayerHealth>();
         player.OnDeath.AddListener(OnPlayerDeath);
 
@@ -34,8 +30,12 @@ public class GameManager : MonoBehaviour
         numDestructiblesLeft = destructibles.Length;
         enemySpawnMod = 1;
 
-        Debug.Log("Num destructibles: " +  destructibles.Length + " Enemy mod: " + maxEnemySpawnMod);
+        Debug.Log("Num destructibles: " + destructibles.Length + " Enemy mod: " + maxEnemySpawnMod);
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         foreach (Destructible destructible in destructibles)
         {
             destructible.destroyedDel += OnHouseDestroyed;
