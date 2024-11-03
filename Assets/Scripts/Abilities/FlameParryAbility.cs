@@ -27,10 +27,14 @@ public class FlameParryAbility : Ability
         _health.IsDeflecting = true;
         _col.enabled = true;
 
+        OnAbilityCast?.Invoke();
+
         yield return new WaitForSeconds(_duration);
 
         _health.IsDeflecting = false;
         _col.enabled = false;
+
+        OnAbilityEnd?.Invoke();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

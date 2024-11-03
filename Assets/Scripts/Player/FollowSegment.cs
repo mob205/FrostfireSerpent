@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 
 public class FollowSegment : MonoBehaviour
@@ -10,10 +11,16 @@ public class FollowSegment : MonoBehaviour
     public FollowSegment FollowTarget { get; set; }
     public bool IsAttached { get; set; } = true;
 
+    public UnityEvent OnInitialized;
+
     public IList<FollowSegment> IncidentSegments { get { return _incidentSegments.AsReadOnly(); } }
     private List<FollowSegment> _incidentSegments = new List<FollowSegment>();
 
     private SpriteRenderer _spriteRenderer;
+    private void Awake()
+    {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
     public void SetSprite(Sprite sprite)
     {
@@ -25,12 +32,9 @@ public class FollowSegment : MonoBehaviour
         // Sets the follow segment to be behind the follow target segment. Right is "forward" in 2D
         transform.position = FollowTarget.transform.position + -FollowTarget.transform.right * _followDistance;
         transform.rotation = FollowTarget.transform.rotation;
+        OnInitialized?.Invoke();
     }
 
-    private void Awake()
-    {
-        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
 
     private void Update()
     {

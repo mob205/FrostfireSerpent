@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     [field: SerializeField] public float TurnRate { get; set; }
 
     [SerializeField] private Sprite[] _pumpkinSprites;
-
     public bool AllowMovement { get; set; } = true;
 
     private Camera _camera;
@@ -50,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             TurnRate * Time.fixedDeltaTime);
 
         int spriteIdx = Mathf.FloorToInt((forward.eulerAngles.z * _numSprites) / 360);
-        _spriteRenderer.sprite = _pumpkinSprites[spriteIdx];
+        _spriteRenderer.sprite = _pumpkinSprites[spriteIdx % _pumpkinSprites.Length];
 
         _rb.velocity = MoveSpeed * (forward * Vector3.right);
     }

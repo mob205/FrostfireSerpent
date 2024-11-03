@@ -1,10 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Ability : MonoBehaviour
 {
     public abstract void CastAbility();
+
+    public UnityEvent OnAbilityCast;
+    public UnityEvent OnAbilityEnd;
     
     [field: SerializeField] public int Cost { get; protected set; }
 
