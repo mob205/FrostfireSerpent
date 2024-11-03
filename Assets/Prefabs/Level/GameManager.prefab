@@ -46,3 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numDestructiblesLeft: 0
   gameoverUI: {fileID: 0}
+  gameWinUI: {fileID: 0}
+  _gameoverSFX: {fileID: 11400000, guid: 69c425c49bf5b1a4b973dcbe17b06e50, type: 2}
+  _gamewinSFX: {fileID: 11400000, guid: e12f4aa70e370864cb0f8dcce6596336, type: 2}

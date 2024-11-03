@@ -82,11 +82,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnerType: 0
   objectToPool: {fileID: 2133627582879521888, guid: b41b954e220d6214bb2b960a35bfa9cf, type: 3}
-  spawnRate: 3
-  spawnAreaRadius: 1.5
+  spawnRate: 5
+  spawnAreaRadius: 1.44
   objectCap: 0
   minimumDistanceFromCenter: 0
-  minDistanceFromOtherObjects: 2
+  minDistanceFromOtherObjects: 0
   objectMask:
     serializedVersion: 2
     m_Bits: 576

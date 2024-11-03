@@ -54,8 +54,6 @@ public class GameManager : MonoBehaviour
 
         numDestructiblesLeft = tempIndex;
         enemySpawnMod = 1;
-
-        Debug.Log("Num destructibles: " + numDestructiblesLeft + " Enemy mod: " + maxEnemySpawnMod);
     }
 
     // Start is called before the first frame update
