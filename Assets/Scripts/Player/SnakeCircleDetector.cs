@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SnakeCircleDetector : MonoBehaviour
 {
@@ -13,17 +14,12 @@ public class SnakeCircleDetector : MonoBehaviour
     [Tooltip("Layers that are IEnclosable")]
     [SerializeField] private LayerMask _enclosableLayers;
 
+    public UnityEvent<Vector3> OnCircleMade;
+
     //[Tooltip("Displacement from the origin of the segment away from the center to start raycast")]
     //[SerializeField] private float _segmentOffset;
 
-    [Header("Effects")]
-    [SerializeField] private ParticleSystem _particles;
-    [SerializeField] private float _camShakeIntensity;
-    [SerializeField] private float _camShakeDuration;
-    [SerializeField] private AudioEvent _circleCompleteSFX;
-
     private SegmentManager _segmentManager;
-    private AudioSource _audio;
 
     private bool _canCircle = true;
     private const int MAXHITS = 15;
@@ -31,7 +27,6 @@ public class SnakeCircleDetector : MonoBehaviour
     private void Awake()
     {
         _segmentManager = GetComponentInParent<SegmentManager>();
-        _audio = GetComponent<AudioSource>();
     }
 
     private IEnumerator ResetCooldown()
@@ -74,8 +69,6 @@ public class SnakeCircleDetector : MonoBehaviour
 
         Vector3 center = new Vector3((float)centerX, (float)centerY, 0);
 
-        PlayEffects(center);
-
         // Shoot rays from each segment to the center to approximate the enclosed shape
         RaycastHit2D[] hits = new RaycastHit2D[MAXHITS];
         foreach (var segment in circleSegments)
@@ -95,6 +88,8 @@ public class SnakeCircleDetector : MonoBehaviour
                 }
             }
         }
+
+        OnCircleMade?.Invoke(center);
     }
 
     // Get segments that form the circle just made
@@ -148,19 +143,5 @@ public class SnakeCircleDetector : MonoBehaviour
             cur = parents[cur];
         }
         return res;
-    }
-    private void PlayEffects(Vector3 position)
-    {
-        Instantiate(_particles, position, Quaternion.identity);
-
-        if(CameraShakeManager.Instance)
-        {
-            CameraShakeManager.Instance.AddShake(_camShakeIntensity, _camShakeDuration);
-        }
-
-        if(_circleCompleteSFX)
-        {
-            _circleCompleteSFX.Play(_audio);
-        }
     }
 }
