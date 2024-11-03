@@ -90,9 +90,12 @@ public class Spawner : MonoBehaviour
         {
             UpdateEnemyObjectCap();
         }
+
+        if (spawnerType == SpawnerType.Enemy)
+            GameManager.Instance.houseDestroyedDel += UpdateEnemyObjectCap;
     }
 
-    private void OnEnable()
+/*    private void OnEnable()
     {
         if (spawnerType == SpawnerType.Enemy)
             GameManager.Instance.houseDestroyedDel += UpdateEnemyObjectCap;
@@ -100,8 +103,8 @@ public class Spawner : MonoBehaviour
     private void OnDisable()
     {
         if (spawnerType == SpawnerType.Enemy)
-            GameManager.Instance.houseDestroyedDel -= UpdateEnemyObjectCap;
-    }
+            GameManager.Instance?.houseDestroyedDel -= UpdateEnemyObjectCap;
+    }*/
 
     // Update is called once per frame
     void Update()
