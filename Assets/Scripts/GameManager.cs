@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         numDestructiblesLeft = destructibles.Length;
         enemySpawnMod = 1;
 
-        Debug.Log("Num destructibles: " +  destructibles.Length);
+        Debug.Log("Num destructibles: " +  destructibles.Length + " Enemy mod: " + maxEnemySpawnMod);
 
         foreach (Destructible destructible in destructibles)
         {

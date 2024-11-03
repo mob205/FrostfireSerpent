@@ -10,12 +10,12 @@ public class Destructible : MonoBehaviour, IEnclosable, IChargeable
     {
         Destroy(gameObject);
         CanEnclose = false;
-        destroyedDel.Invoke();
+        destroyedDel?.Invoke();
     }
 
     public void OnCharge()
     {
         Destroy(gameObject);
-        destroyedDel.Invoke();
+        destroyedDel?.Invoke();
     }
 }
