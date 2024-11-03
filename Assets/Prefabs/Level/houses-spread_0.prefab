@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4358816069565655364}
   - component: {fileID: 7541752428460514041}
   - component: {fileID: -4208847470855847029}
+  - component: {fileID: -1712762992833678065}
   m_Layer: 6
   m_Name: houses-spread_0
   m_TagString: Untagged
@@ -146,3 +147,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8125, y: 0.5859236}
   m_EdgeRadius: 0
+--- !u!114 &-1712762992833678065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181321563367191849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
