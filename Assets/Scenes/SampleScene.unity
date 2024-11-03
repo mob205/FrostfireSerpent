@@ -6991,13 +6991,33 @@ PrefabInstance:
       propertyPath: _abilityIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1596089458299510105, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -123.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1596089458299510105, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -65.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1643524279967753521, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -47.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2799210327845349965, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 70.8
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2799210327845349965, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 31.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799210327845349965, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -170.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799210327845349965, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -64.2
       objectReference: {fileID: 0}
     - target: {fileID: 3560051638485718254, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7019,6 +7039,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3618447010399591339, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782623105763779775, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 40f975f2dd156f441876c69c0afb4ad6, type: 2}
+    - target: {fileID: 3782623105763779775, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782623105763779775, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3969412526386998758, guid: 40f975f2dd156f441876c69c0afb4ad6, type: 2}
+    - target: {fileID: 3782623105763779775, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4797202630709113795, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7026,6 +7066,22 @@ PrefabInstance:
     - target: {fileID: 5543045484776609098, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851399509468552163, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 40f975f2dd156f441876c69c0afb4ad6, type: 2}
+    - target: {fileID: 6851399509468552163, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851399509468552163, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3969412526386998758, guid: 40f975f2dd156f441876c69c0afb4ad6, type: 2}
+    - target: {fileID: 6851399509468552163, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7301086207219553148, guid: f2a84f39f8bef4647972823585d2dcd3, type: 3}
       propertyPath: m_TargetGraphic

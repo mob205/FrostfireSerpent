@@ -48,8 +48,11 @@ public class PlayerMovement : MonoBehaviour
             Quaternion.FromToRotation(Vector2.right, _frameDirection), 
             TurnRate * Time.fixedDeltaTime);
 
-        int spriteIdx = Mathf.FloorToInt((forward.eulerAngles.z * _numSprites) / 360);
-        _spriteRenderer.sprite = _pumpkinSprites[spriteIdx % _pumpkinSprites.Length];
+        int spriteIdx = Mathf.FloorToInt((forward.eulerAngles.z / 360) * _numSprites);
+        if(spriteIdx < _pumpkinSprites.Length)
+        {
+            _spriteRenderer.sprite = _pumpkinSprites[spriteIdx];
+        }
 
         _rb.velocity = MoveSpeed * (forward * Vector3.right);
     }
