@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a5eac6acf6384bb9e59950a5b6572, type: 3}
   m_Name: Witch Laugh
   m_EditorClassIdentifier: 
-  Clips: []
+  Clips:
+  - {fileID: 8300000, guid: e539700f059495d4596f55a59afcf5a9, type: 3}
   MinPitch: 0.85
   MaxPitch: 1.15
   MinVolume: 0.5

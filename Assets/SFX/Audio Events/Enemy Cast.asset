@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a5eac6acf6384bb9e59950a5b6572, type: 3}
   m_Name: Enemy Cast
   m_EditorClassIdentifier: 
-  Clips: []
+  Clips:
+  - {fileID: 8300000, guid: 60130ce9ee8413e47a2991be813184ee, type: 3}
   MinPitch: 0.85
   MaxPitch: 1.15
   MinVolume: 0.5

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0a5eac6acf6384bb9e59950a5b6572, type: 3}
   m_Name: Circle Explosion
   m_EditorClassIdentifier: 
-  Clips: []
+  Clips:
+  - {fileID: 8300000, guid: 89a70447b2e38a54e9b54c257631cbb6, type: 3}
   MinPitch: 0.75
   MaxPitch: 1.15
   MinVolume: 0.5
