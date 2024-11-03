@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour, IEnclosable
+public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
 {
     [Header("General")]
     [SerializeField] private float _retargetingDelay;
     [SerializeField] private float _attackRange;
     [SerializeField] private float _fleeRange;
     [SerializeField] private bool _allowEncloseKill = true;
+    [SerializeField] private bool _allowChargeKill = true;
     [SerializeField] private LayerMask _viewBlocking;
 
     [Header("Attacking")]
@@ -184,5 +185,10 @@ public class EnemyAI : MonoBehaviour, IEnclosable
     {
         Destroy(gameObject);
         CanEnclose = false;
+    }
+
+    public void OnCharge()
+    {
+        Destroy(gameObject);
     }
 }
