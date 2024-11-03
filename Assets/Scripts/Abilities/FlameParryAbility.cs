@@ -6,14 +6,17 @@ using UnityEngine;
 public class FlameParryAbility : Ability
 {
     [SerializeField] private float _duration;
+    [SerializeField] private AudioEvent _parrySFX;
 
     private PlayerHealth _health;
     private Collider2D _col;
+    private AudioSource _audio;
 
     private void Awake()
     {
         _health = GetComponentInParent<PlayerHealth>();
         _col = GetComponent<Collider2D>();
+        _audio = GetComponent<AudioSource>();
         _col.enabled = false;
     }
     public override void CastAbility()
@@ -26,6 +29,8 @@ public class FlameParryAbility : Ability
     {
         _health.IsDeflecting = true;
         _col.enabled = true;
+
+        if(_parrySFX) { _parrySFX.Play(_audio); }
 
         OnAbilityCast?.Invoke();
 
