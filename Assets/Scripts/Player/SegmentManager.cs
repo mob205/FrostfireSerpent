@@ -92,7 +92,7 @@ public class SegmentManager : MonoBehaviour
             removed.TriggerDetach();
         }
         pickup.NumSegments = i;
-        Destroy(pickup, _pickupDuration);
+        Destroy(pickup.gameObject, _pickupDuration);
         _endSegment.SetSprite(_endSprite);
     }
 

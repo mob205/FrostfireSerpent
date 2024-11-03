@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1460990506131832220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: -0.38, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1067,18 +1067,18 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.4378376
-          inSlope: 0.4692339
-          outSlope: 0.4692339
+          value: 0.24324226
+          inSlope: 0.31162477
+          outSlope: 0.31162477
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.41578057
-          value: 0.63293594
-          inSlope: -0.3070767
-          outSlope: -0.3070767
+          time: 0.4179168
+          value: 0.3734755
+          inSlope: -0.16499698
+          outSlope: -0.16499698
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
@@ -1086,8 +1086,8 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -1.0833873
-          outSlope: -1.0833873
+          inSlope: -0.6416187
+          outSlope: -0.6416187
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
