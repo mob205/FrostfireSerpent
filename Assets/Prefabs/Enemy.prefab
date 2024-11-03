@@ -133,6 +133,9 @@ MonoBehaviour:
   _attackRange: 8
   _fleeRange: 4
   _allowEncloseKill: 1
+  _viewBlocking:
+    serializedVersion: 2
+    m_Bits: 64
   _attackSpeed: 1
   _projectile: {fileID: 2196787657729312946, guid: 1c9ff19031d208040af566104f11c982, type: 3}
   _patrolRetargetMinDelay: 1

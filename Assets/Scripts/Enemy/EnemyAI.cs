@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable
     [SerializeField] private float _attackRange;
     [SerializeField] private float _fleeRange;
     [SerializeField] private bool _allowEncloseKill = true;
+    [SerializeField] private LayerMask _viewBlocking;
 
     [Header("Attacking")]
     [SerializeField] private float _attackSpeed;
@@ -88,11 +89,13 @@ public class EnemyAI : MonoBehaviour, IEnclosable
 
             var dist = (_nearest.transform.position - transform.position).magnitude;
 
+            Debug.DrawLine(transform.position, _nearest.transform.position);
+
             if (dist < _fleeRange)
             {
                 Flee();
             }
-            else if (dist < _attackRange)
+            else if (dist < _attackRange && HasLineOfSight(_nearest.transform.position)) // Line of sight check
             {
                 _navAgent.isStopped = true;
                 Attack();
@@ -102,6 +105,12 @@ public class EnemyAI : MonoBehaviour, IEnclosable
                 Chase();
             }
         }
+    }
+
+    private bool HasLineOfSight(Vector3 target)
+    {
+        var diff = target - transform.position;
+        return !Physics2D.Raycast(transform.position, diff.normalized, diff.magnitude, _viewBlocking);
     }
 
     private void Attack()
