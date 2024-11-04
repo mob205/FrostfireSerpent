@@ -5840,6 +5840,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 106743023}
+    - target: {fileID: 6570731008870442720, guid: be147d38030053c45b33df784f0e51c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.04
+      objectReference: {fileID: 0}
     - target: {fileID: 7450726324100297608, guid: be147d38030053c45b33df784f0e51c5, type: 3}
       propertyPath: m_Name
       value: Camera
@@ -5883,6 +5887,10 @@ PrefabInstance:
     - target: {fileID: 7663483681047759330, guid: be147d38030053c45b33df784f0e51c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148485733745716867, guid: be147d38030053c45b33df784f0e51c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6504,7 +6512,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2260407986054875326, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.01
+      value: -7.04
       objectReference: {fileID: 0}
     - target: {fileID: 2260407986054875326, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6544,11 +6552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2492767040318085040, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: _numStartingSegments
-      value: 300
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4515678388988823975, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: m_Name

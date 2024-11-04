@@ -34,10 +34,7 @@ public class ParticleOnAbility : MonoBehaviour
 
             _ability.OnAbilityStatusChange += OnStatusChange;
 
-            if(_light)
-            {
-                _light.color = _inactiveLightColor;
-            }
+            OnStatusChange(_ability.IsAbilityActive);
         }
     }
     private void OnStatusChange(bool status)
