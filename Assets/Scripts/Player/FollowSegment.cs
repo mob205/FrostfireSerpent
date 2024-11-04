@@ -76,6 +76,7 @@ public class FollowSegment : MonoBehaviour
             if(incidentSegment.FollowTarget != null)
             {
                 _incidentSegments.Add(incidentSegment);
+                incidentSegment.OnDetach.AddListener(() => _incidentSegments.Remove(incidentSegment));
             }
         }
     }
@@ -84,8 +85,11 @@ public class FollowSegment : MonoBehaviour
         if(collision.TryGetComponent(out FollowSegment incidentSegment))
         {
             _incidentSegments.Remove(incidentSegment);
+            incidentSegment.OnDetach.RemoveListener(() => _incidentSegments.Remove(incidentSegment));
         }
     }
+
+    
 
     private void OnDestroy()
     {

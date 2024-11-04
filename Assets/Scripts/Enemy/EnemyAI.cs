@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
     [SerializeField] private float _deathShrinkDuration;
 
     [Header("Attacking")]
+    [SerializeField] private bool _debugAllowAttacking = true;
     [SerializeField] private float _attackSpeed;
     [SerializeField] private Projectile _projectile;
     [SerializeField] private AudioEvent _attackSFX;
@@ -99,8 +100,6 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
 
             var dist = (_nearest.transform.position - transform.position).magnitude;
 
-            Debug.DrawLine(transform.position, _nearest.transform.position);
-
             if (dist < _fleeRange)
             {
                 Flee();
@@ -125,7 +124,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
 
     private void Attack()
     {
-        if (!_canAttack) { return; }
+        if (!_canAttack || !_debugAllowAttacking) { return; }
 
         _anim.SetBool("Walk", false);
         _anim.SetTrigger("Attack");
