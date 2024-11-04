@@ -15,9 +15,6 @@ public class FollowSegment : MonoBehaviour
     public bool IsAttached { get; set; } = true;
 
 
-    // Segment pickup that this follow segment is a part of
-    public SegmentPickup SegmentPickup { get; set; }
-
     public UnityEvent OnInitialized;
     public UnityEvent OnDetach;
 
@@ -25,6 +22,8 @@ public class FollowSegment : MonoBehaviour
     private List<FollowSegment> _incidentSegments = new List<FollowSegment>();
 
     private SpriteRenderer _spriteRenderer;
+
+    private SegmentPickup _attachedPickup;
 
     private void Awake()
     {
@@ -39,8 +38,12 @@ public class FollowSegment : MonoBehaviour
     public void Initialize()
     {
         // Sets the follow segment to be behind the follow target segment. Right is "forward" in 2D
-        transform.position = FollowTarget.transform.position + -FollowTarget.transform.right * _followDistance;
-        transform.rotation = FollowTarget.transform.rotation;
+        transform.SetPositionAndRotation(FollowTarget.transform.position + -FollowTarget.transform.right * _followDistance, 
+            FollowTarget.transform.rotation);
+
+        // Remove any non-persistent listeners that may have subscribed when previously
+        OnDetach.RemoveAllListeners();
+
         OnInitialized?.Invoke();
     }
 
@@ -86,9 +89,9 @@ public class FollowSegment : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(SegmentPickup && collision.TryGetComponent(out SegmentManager manager))
+        if(_attachedPickup && collision.TryGetComponent(out SegmentManager manager))
         {
-            SegmentPickup.TriggerPickup(manager);
+            _attachedPickup.TriggerPickup(manager);
         }
         if(collision.TryGetComponent(out FollowSegment incidentSegment))
         {
@@ -97,8 +100,14 @@ public class FollowSegment : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void AttachToPickup(SegmentPickup pickup)
     {
-        transform.DOKill();
+        _attachedPickup = pickup;
+        _attachedPickup.OnPickupDestroyed.AddListener(() => Head.ReturnToPool(this));
+    }
+
+    private void OnDisable()
+    {
+        transform.DOComplete();
     }
 }

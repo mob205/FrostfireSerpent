@@ -27,7 +27,6 @@ public class CircleEffects : MonoBehaviour
     }
     public void PlayEffects(Vector3 position)
     {
-        Debug.Log("Playing circle effects.");
         var particles = Instantiate(_particles, position, Quaternion.identity);
         var gradient = _inactiveGradient;
         if(_abilities.IsAbilityActive)

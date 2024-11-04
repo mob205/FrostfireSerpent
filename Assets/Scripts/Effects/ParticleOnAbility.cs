@@ -34,6 +34,8 @@ public class ParticleOnAbility : MonoBehaviour
 
             _ability.OnAbilityStatusChange += OnStatusChange;
 
+            _particles.Play();
+
             OnStatusChange(_ability.IsAbilityActive);
         }
     }

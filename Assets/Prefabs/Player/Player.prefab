@@ -358,6 +358,7 @@ MonoBehaviour:
   _middleSprite: {fileID: -1075762597, guid: 0dc9c6803f3291441bd583bc30097453, type: 3}
   _endSprite: {fileID: 362964482, guid: 0dc9c6803f3291441bd583bc30097453, type: 3}
   _numStartingSegments: 25
+  _maxSegments: 1000
   _detachedPickup: {fileID: 7422697420074170186, guid: 923cca73c51771348accb7c0b9675671, type: 3}
   _pickupDuration: 5
 --- !u!50 &1493229758798617149

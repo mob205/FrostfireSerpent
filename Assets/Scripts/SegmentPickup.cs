@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SegmentPickup : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class SegmentPickup : MonoBehaviour
     public int NumSegments { get; set; }
 
     private bool _hasBeenPickedUp;
+
+    public UnityEvent OnPickupDestroyed;
 
     private void Awake()
     {
@@ -26,8 +27,16 @@ public class SegmentPickup : MonoBehaviour
         if(!_hasBeenPickedUp)
         {
             _hasBeenPickedUp = true;
+            OnPickupDestroyed?.Invoke();
             manager.AddSegment(NumSegments);
             Destroy(gameObject);
+        }
+    }
+    public void OnDestroy()
+    {
+        if(!_hasBeenPickedUp)
+        {
+            OnPickupDestroyed?.Invoke();
         }
     }
 }

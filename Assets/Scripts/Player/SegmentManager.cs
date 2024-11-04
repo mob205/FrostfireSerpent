@@ -13,6 +13,7 @@ public class SegmentManager : MonoBehaviour
     [SerializeField] private Sprite _middleSprite;
     [SerializeField] private Sprite _endSprite;
     [SerializeField] private int _numStartingSegments;
+    [SerializeField] private int _maxSegments;
 
     [SerializeField] private SegmentPickup _detachedPickup;
     [SerializeField] private float _pickupDuration = 5f;
@@ -22,11 +23,16 @@ public class SegmentManager : MonoBehaviour
     private FollowSegment _headSegment;
     private FollowSegment _endSegment;
 
+    private FollowSegment[] _pool;
+    private int _poolIdx = 0;
+
     private void Awake()
     {
         _headSegment = GetComponent<FollowSegment>();
         _endSegment = _headSegment;
         _segments.Add(_headSegment);
+
+        _pool = ObjectPooler.CreateObjectPool(_segment, _maxSegments);
     }
     void Start()
     {
@@ -80,13 +86,8 @@ public class SegmentManager : MonoBehaviour
             if (!removed) { break; }
 
             // Set up detached segment to be picked up 
-            removed.transform.parent = pickup.transform;
-            if(removed.TryGetComponent(out Rigidbody2D rb))
-            {
-                Destroy(rb);
-            }
-            removed.SegmentPickup = pickup;
             removed.TriggerDetach();
+            removed.AttachToPickup(pickup);
         }
         pickup.NumSegments = i;
         Destroy(pickup.gameObject, _pickupDuration);
@@ -100,7 +101,7 @@ public class SegmentManager : MonoBehaviour
         {
             var removed = RemoveSegment();
             if (!removed) { break; }
-            Destroy(removed.gameObject);
+            ReturnToPool(removed);
         }
         _endSegment.SetSprite(_endSprite);
     }
@@ -115,7 +116,6 @@ public class SegmentManager : MonoBehaviour
         _segments.RemoveAt(_segments.Count - 1);
 
         lastSegment.FollowTarget = null;
-        lastSegment.Head = null;
         lastSegment.IsAttached = false;
 
         if(_segments.Count != 0)
@@ -131,7 +131,14 @@ public class SegmentManager : MonoBehaviour
     private void AddSegment()
     {
         // Create new segment and add it to end of snake
-        var newSegment = Instantiate(_segment, _endSegment.transform.position, _endSegment.transform.rotation);
+        var newSegment = GetSegmentFromPool();
+
+        if(newSegment == null) 
+        { 
+            Debug.Log("Could not get more segments from pool.");
+            return;
+        }
+        
         newSegment.FollowTarget = _endSegment;
         newSegment.Head = this;
         newSegment.IsAttached = true;
@@ -155,5 +162,20 @@ public class SegmentManager : MonoBehaviour
         _endSegment = newSegment;
 
         OnSegmentChange?.Invoke(PlayerLength);
+    }
+
+    private FollowSegment GetSegmentFromPool()
+    {
+        if(_poolIdx >= _pool.Length) { return null; }
+        var res = _pool[_poolIdx++];
+        res.gameObject.SetActive(true);
+        return res;
+    }
+    public void ReturnToPool(FollowSegment segment)
+    {
+        if (_poolIdx == 0) { return; }
+        --_poolIdx;
+        _pool[_poolIdx] = segment;
+        segment.gameObject.SetActive(false);
     }
 }

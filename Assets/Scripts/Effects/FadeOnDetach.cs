@@ -16,11 +16,23 @@ public class FadeOnDetach : MonoBehaviour
     private Tweener _alphaTween;
     private Tweener _lightTween;
 
+    private float _startingEmission;
+    private float _startingIntensity;
+
     private void Awake()
     {
         _particles = GetComponentInChildren<ParticleSystem>();
         _sprite = GetComponentInChildren<SpriteRenderer>();
         _light = GetComponentInChildren<Light2D>();
+
+        _startingEmission = _particles.emission.rateOverTime.constant;
+        _startingIntensity = _light.intensity;
+    }
+    private void OnEnable()
+    {
+        SetAlpha(1);
+        SetEmissionRate(_startingEmission);
+        SetIntensity(_startingIntensity);
     }
     public void StartFade()
     {

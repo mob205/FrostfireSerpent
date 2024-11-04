@@ -142,7 +142,6 @@ public class SnakeCircleDetector : MonoBehaviour
         List<FollowSegment> res = new List<FollowSegment>();
         while (cur != null)
         {
-            Debug.Log(cur.name);
             res.Add(cur);
             cur = parents[cur];
         }
