@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody2D _rb;
 
+    private bool _hasHit;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -28,6 +30,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(_hasHit) { return; }
         if (!IsDeflected && collision.TryGetComponent(out FollowSegment segment) && segment.IsAttached && segment.Head)
         {
             segment.Head.GetComponent<PlayerHealth>().Damage(segment, this);
@@ -40,6 +43,7 @@ public class Projectile : MonoBehaviour
     }
     public void DestroyProjectile()
     {
+        _hasHit = true;
         if(_hitParticles)
         {
             Instantiate(_hitParticles, transform.position, Quaternion.identity);
