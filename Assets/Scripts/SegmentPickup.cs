@@ -17,8 +17,7 @@ public class SegmentPickup : MonoBehaviour
         if (collision.TryGetComponent(out SegmentManager segmentManager))
         {
             segmentManager.AddSegment(NumSegments);
-            //Destroy(gameObject);
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

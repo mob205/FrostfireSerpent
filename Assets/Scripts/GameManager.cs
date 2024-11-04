@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
             {
                 tempDestructibleHolder[tempIndex] = destructible;
                 tempIndex++;
-                Debug.Log(tempIndex);
             }
         }
 
@@ -61,7 +60,10 @@ public class GameManager : MonoBehaviour
     {
         foreach (Destructible destructible in destructibles)
         {
-            destructible.destroyedDel += OnHouseDestroyed;
+            if(destructible)
+            {
+                destructible.destroyedDel += OnHouseDestroyed;
+            }
         }
     }
 

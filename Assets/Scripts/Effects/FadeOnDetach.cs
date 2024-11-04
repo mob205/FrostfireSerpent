@@ -47,5 +47,6 @@ public class FadeOnDetach : MonoBehaviour
     {
         _emissionTween.Kill();
         _alphaTween.Kill();
+        _lightTween.Kill();
     }
 }

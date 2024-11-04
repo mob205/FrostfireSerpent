@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8021779475748612482}
   - component: {fileID: 537989093325064051}
   - component: {fileID: 1704404572323280482}
+  - component: {fileID: 1416188966120508126}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -95,6 +96,23 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &1416188966120508126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684817226480167006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &4402242437502005767
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +124,7 @@ GameObject:
   - component: {fileID: 6570731008870442720}
   - component: {fileID: 1155518617802249923}
   - component: {fileID: 3285373019668641006}
+  - component: {fileID: 7302378735121716876}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -122,7 +141,7 @@ Transform:
   m_GameObject: {fileID: 4402242437502005767}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.17, y: -98.47, z: -10}
+  m_LocalPosition: {x: 6.01, y: -10.61, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -184,6 +203,18 @@ MonoBehaviour:
   m_Damping: 0.5
   m_MaxWindowSize: -1
   m_Padding: 0
+--- !u!114 &7302378735121716876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402242437502005767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29a5c8b21486784384359ae933dc8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4830508075062032474
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 4830508075062032474}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.17, y: -98.47, z: -10}
+  m_LocalPosition: {x: 6.01, y: -10.61, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

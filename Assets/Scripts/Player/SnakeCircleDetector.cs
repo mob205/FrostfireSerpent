@@ -52,7 +52,16 @@ public class SnakeCircleDetector : MonoBehaviour
 
         List<FollowSegment> circleSegments = GetCircleSegments(endSegment, segments);
 
-        if(circleSegments.Count < _minCircleCount) { return; }
+        if(circleSegments == null)
+        {
+            Debug.LogError("No segments!!");
+        }
+        if(circleSegments.Count < _minCircleCount)
+        {
+            Debug.Log($"Found {circleSegments.Count}, but needed only {_minCircleCount}!");
+            return;
+        }
+        Debug.Log($"Circle successfully detected with {circleSegments.Count} segments.");
 
         // Get center of the enclosed area.
         // Use double to hopefully minimize floating point imprecision when adding
@@ -68,6 +77,8 @@ public class SnakeCircleDetector : MonoBehaviour
         centerY /= circleSegments.Count;
 
         Vector3 center = new Vector3((float)centerX, (float)centerY, 0);
+
+        Debug.Log($"Creating circle at {center}");
 
         // Shoot rays from each segment to the center to approximate the enclosed shape
         RaycastHit2D[] hits = new RaycastHit2D[MAXHITS];
@@ -95,7 +106,7 @@ public class SnakeCircleDetector : MonoBehaviour
     // Get segments that form the circle just made
     private List<FollowSegment> GetCircleSegments(FollowSegment endSegment, IList<FollowSegment> segments)
     {
-        if(segments.Count == 0) { return null; }
+        if (segments.Count == 0) { return null; }
         
         Dictionary<FollowSegment, FollowSegment> parents = new Dictionary<FollowSegment, FollowSegment>();
         Queue<FollowSegment> queue = new Queue<FollowSegment>();

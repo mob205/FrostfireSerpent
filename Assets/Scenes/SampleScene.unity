@@ -3969,23 +3969,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1200137689 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4402242437502005767, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-  m_PrefabInstance: {fileID: 2021762084}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1200137692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1200137689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e29a5c8b21486784384359ae933dc8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1212264396
 GameObject:
   m_ObjectHideFlags: 0
@@ -6108,14 +6091,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 106743023}
-    - target: {fileID: 6570731008870442720, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6570731008870442720, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.61
-      objectReference: {fileID: 0}
     - target: {fileID: 7450726324100297608, guid: be147d38030053c45b33df784f0e51c5, type: 3}
       propertyPath: m_Name
       value: Camera
@@ -6160,24 +6135,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8148485733745716867, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8148485733745716867, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.61
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4402242437502005767, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1200137692}
-    - targetCorrespondingSourceObject: {fileID: 684817226480167006, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2133283778}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be147d38030053c45b33df784f0e51c5, type: 3}
 --- !u!1 &2050195858
 GameObject:
@@ -6598,28 +6559,6 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!1 &2133283773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 684817226480167006, guid: be147d38030053c45b33df784f0e51c5, type: 3}
-  m_PrefabInstance: {fileID: 2021762084}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2133283778
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133283773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-  m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
-  m_FrequencyGain: 1
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &2151695344606648450
 PrefabInstance:
   m_ObjectHideFlags: 0

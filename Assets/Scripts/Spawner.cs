@@ -140,7 +140,6 @@ public class Spawner : MonoBehaviour
             {
                 if (obj && !obj.activeInHierarchy)
                 {
-                    Debug.Log("enemy spawned");
                     obj.transform.position = spawnLocation;
                     obj.SetActive(true);
 
@@ -202,7 +201,6 @@ public class Spawner : MonoBehaviour
             }
         }
 
-        if (spawnPos == Vector3.zero) Debug.Log("couldn't find valid spawn point");
         return spawnPos;
     }
 

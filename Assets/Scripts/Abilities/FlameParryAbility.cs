@@ -44,7 +44,7 @@ public class FlameParryAbility : Ability
     {
         if (collision.TryGetComponent(out EnemyAI enemy))
         {
-            Destroy(enemy.gameObject);
+            enemy.StartDeath();
         }
     }
 
