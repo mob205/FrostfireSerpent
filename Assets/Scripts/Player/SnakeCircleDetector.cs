@@ -112,7 +112,6 @@ public class SnakeCircleDetector : MonoBehaviour
         while (queue.Count > 0)
         {
             cur = queue.Dequeue();
-            Debug.Log($"At {cur}");
 
             // The head segment will have no follow target, which is what we're looking for
             if (cur.FollowTarget == null)

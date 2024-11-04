@@ -71,6 +71,7 @@ public class EnemyAI : MonoBehaviour, IEnclosable, IChargeable
     private void Start()
     {
         StartCoroutine(DelayedUpdate());
+        StartCoroutine(ResetAttack());
         CanEnclose = _allowEncloseKill;
     }
 
