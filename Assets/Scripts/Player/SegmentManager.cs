@@ -85,10 +85,7 @@ public class SegmentManager : MonoBehaviour
             {
                 Destroy(rb);
             }
-            if(removed.TryGetComponent(out Collider2D col))
-            {
-                col.usedByComposite = true;
-            }
+            removed.SegmentPickup = pickup;
             removed.TriggerDetach();
         }
         pickup.NumSegments = i;

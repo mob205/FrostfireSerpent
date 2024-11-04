@@ -14,6 +14,10 @@ public class FollowSegment : MonoBehaviour
     public FollowSegment FollowTarget { get; set; }
     public bool IsAttached { get; set; } = true;
 
+
+    // Segment pickup that this follow segment is a part of
+    public SegmentPickup SegmentPickup { get; set; }
+
     public UnityEvent OnInitialized;
     public UnityEvent OnDetach;
 
@@ -70,7 +74,7 @@ public class FollowSegment : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent(out FollowSegment incidentSegment))
+        if(IsAttached && collision.TryGetComponent(out FollowSegment incidentSegment) && incidentSegment.IsAttached)
         {
             // Do not consider the head an incident segment
             if(incidentSegment.FollowTarget != null)
@@ -82,14 +86,16 @@ public class FollowSegment : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if(SegmentPickup && collision.TryGetComponent(out SegmentManager manager))
+        {
+            SegmentPickup.TriggerPickup(manager);
+        }
         if(collision.TryGetComponent(out FollowSegment incidentSegment))
         {
             _incidentSegments.Remove(incidentSegment);
             incidentSegment.OnDetach.RemoveListener(() => _incidentSegments.Remove(incidentSegment));
         }
     }
-
-    
 
     private void OnDestroy()
     {

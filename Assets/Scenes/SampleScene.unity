@@ -6544,7 +6544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2492767040318085040, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: _numStartingSegments
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 3993901310917679743, guid: 29e77c50f1cc311478604b7ba7cbf4d1, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
@@ -6567,6 +6567,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1949844480727974756, guid: b41b954e220d6214bb2b960a35bfa9cf, type: 3}
+      propertyPath: _debugAllowAttacking
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2133627582879521888, guid: b41b954e220d6214bb2b960a35bfa9cf, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -6577,11 +6581,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7349876156976859335, guid: b41b954e220d6214bb2b960a35bfa9cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.24
+      value: 10.66
       objectReference: {fileID: 0}
     - target: {fileID: 7349876156976859335, guid: b41b954e220d6214bb2b960a35bfa9cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.73
+      value: -10.46
       objectReference: {fileID: 0}
     - target: {fileID: 7349876156976859335, guid: b41b954e220d6214bb2b960a35bfa9cf, type: 3}
       propertyPath: m_LocalPosition.z
