@@ -3262,11 +3262,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 807897670513118942, guid: 1f3ad0893e2dd8341a2036276a59d1b8, type: 3}
       propertyPath: maxNumberSegments
-      value: 300
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 807897670513118942, guid: 1f3ad0893e2dd8341a2036276a59d1b8, type: 3}
       propertyPath: minNumberSegments
-      value: 300
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 807897670513118942, guid: 1f3ad0893e2dd8341a2036276a59d1b8, type: 3}
       propertyPath: <NumSegments>k__BackingField
