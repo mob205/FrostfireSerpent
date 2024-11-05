@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Camera _camera;
     private Rigidbody2D _rb;
-    private Vector2 _frameDirection;
+    private Vector3 _mousePos;
 
     public Quaternion Forward { get; private set; } = Quaternion.identity;
 
@@ -23,8 +23,8 @@ public class PlayerMovement : MonoBehaviour
     // Maps mouse position to point
     public void OnDirectionChange(InputAction.CallbackContext context)
     {
-        var diff = _camera.ScreenToWorldPoint(context.ReadValue<Vector2>()) - transform.position;
-        _frameDirection = diff.normalized;
+        _mousePos = context.ReadValue<Vector2>();
+        
     }
 
     void FixedUpdate()
@@ -35,9 +35,10 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        Vector2 dir = (_camera.ScreenToWorldPoint(_mousePos) - transform.position).normalized;
         // Rotate toward the cursor
         Forward = Quaternion.RotateTowards(Forward, 
-            Quaternion.FromToRotation(Vector2.right, _frameDirection), 
+            Quaternion.FromToRotation(Vector2.right, dir), 
             TurnRate * Time.fixedDeltaTime);
 
         _rb.velocity = MoveSpeed * (Forward * Vector3.right);
