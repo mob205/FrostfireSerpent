@@ -115,6 +115,10 @@ public class SegmentManager : MonoBehaviour
 
         _segments.RemoveAt(_segments.Count - 1);
 
+        if(lastSegment.FollowTarget)
+        {
+            lastSegment.FollowTarget.Previous = null;
+        }
         lastSegment.FollowTarget = null;
         lastSegment.IsAttached = false;
 
@@ -140,6 +144,10 @@ public class SegmentManager : MonoBehaviour
         }
         
         newSegment.FollowTarget = _endSegment;
+        if(_endSegment)
+        {
+            _endSegment.Previous = newSegment;
+        }
         newSegment.Head = this;
         newSegment.IsAttached = true;
 

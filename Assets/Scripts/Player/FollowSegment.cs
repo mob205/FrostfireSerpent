@@ -12,6 +12,7 @@ public class FollowSegment : MonoBehaviour
 
     public SegmentManager Head { get; set; }
     public FollowSegment FollowTarget { get; set; }
+    public FollowSegment Previous { get; set; }
     public bool IsAttached { get; set; } = true;
 
 
@@ -49,6 +50,7 @@ public class FollowSegment : MonoBehaviour
 
     public void TriggerDetach()
     {
+        _incidentSegments.Clear();
         OnDetach?.Invoke();
     }
 

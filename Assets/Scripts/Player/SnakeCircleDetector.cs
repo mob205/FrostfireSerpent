@@ -57,6 +57,12 @@ public class SnakeCircleDetector : MonoBehaviour
             return;
         }
 
+        //Debug.Log($"Circle made with {circleSegments.Count} segments.");
+        //for(int i = 0; i < circleSegments.Count; i++)
+        //{
+        //    Debug.Log(circleSegments[i]);
+        //}
+
         // Get center of the enclosed area.
         // Use double to hopefully minimize floating point imprecision when adding
         double centerX = 0; 
@@ -124,6 +130,11 @@ public class SnakeCircleDetector : MonoBehaviour
             {
                 queue.Enqueue(cur.FollowTarget);
                 parents.Add(cur.FollowTarget, cur);
+            }
+            if(cur.Previous && !parents.ContainsKey(cur.Previous))
+            {
+                queue.Enqueue(cur.Previous);
+                parents.Add(cur.Previous, cur);
             }
 
             // Incident edges may shorten the circle, so check these too
