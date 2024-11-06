@@ -25,7 +25,7 @@ public class CircleEffects : MonoBehaviour
         _audio = GetComponents<AudioSource>();
         _abilities = GetComponentInParent<PlayerAbilities>();
     }
-    public void PlayEffects(Vector3 position)
+    public void PlayEffects(Vector2 position)
     {
         var particles = Instantiate(_particles, position, Quaternion.identity);
         var gradient = _inactiveGradient;

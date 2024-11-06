@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,22 +12,20 @@ public class SnakeCircleDetector : MonoBehaviour
     [Tooltip("Minimum number of segments needed to form a circle")]
     [SerializeField] private int _minCircleCount = 4;
 
-    [Tooltip("Layers that are IEnclosable")]
-    [SerializeField] private LayerMask _enclosableLayers;
+    [SerializeField] private LayerMask _segmentLayer;
 
-    public UnityEvent<Vector3> OnCircleMade;
-
-    //[Tooltip("Displacement from the origin of the segment away from the center to start raycast")]
-    //[SerializeField] private float _segmentOffset;
+    public UnityEvent<Vector2> OnCircleMade;
 
     private SegmentManager _segmentManager;
+    private PolygonCollider2D _col;
 
     private bool _canCircle = true;
-    private const int MAXHITS = 15;
+    private RaycastHit2D[] _hits = new RaycastHit2D[10000];
 
     private void Awake()
     {
         _segmentManager = GetComponentInParent<SegmentManager>();
+        _col = GetComponent<PolygonCollider2D>();
     }
 
     private IEnumerator ResetCooldown()
@@ -38,74 +37,73 @@ public class SnakeCircleDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(_canCircle && collision.TryGetComponent(out FollowSegment segment) && segment.IsAttached)
+        if (_canCircle && collision.TryGetComponent(out FollowSegment segment) && segment.IsAttached)
         {
             MakeCircle(segment);
             StartCoroutine(ResetCooldown());
         }
     }
-
     // Triggers Enclose on all IEnclosables in the shortest loop from the end segment to the head
     private void MakeCircle(FollowSegment endSegment)
     {
         var segments = _segmentManager.Segments;
 
-        List<FollowSegment> circleSegments = GetCircleSegments(endSegment, segments);
+        // Get the points that make up the formed circle
+        var points = GetCirclePoints(endSegment, segments);
 
-        if(circleSegments.Count < _minCircleCount)
+        if (points.Length < _minCircleCount)
         {
             return;
         }
 
-        //Debug.Log($"Circle made with {circleSegments.Count} segments.");
-        //for(int i = 0; i < circleSegments.Count; i++)
-        //{
-        //    Debug.Log(circleSegments[i]);
-        //}
+        _col.points = points;
+        _col.enabled = true;
+        _col.Cast(Vector2.zero, _hits);
 
-        // Get center of the enclosed area.
-        // Use double to hopefully minimize floating point imprecision when adding
-        double centerX = 0; 
-        double centerY = 0;
-
-        foreach (var segment in circleSegments)
+        for(int i = 0; i < _hits.Length; i++)
         {
-            centerX += segment.transform.position.x;
-            centerY += segment.transform.position.y;
-        }
-        centerX /= circleSegments.Count;
-        centerY /= circleSegments.Count;
-
-        Vector3 center = new Vector3((float)centerX, (float)centerY, 0);
-
-        // Shoot rays from each segment to the center to approximate the enclosed shape
-        RaycastHit2D[] hits = new RaycastHit2D[MAXHITS];
-        foreach (var segment in circleSegments)
-        {
-            var diff = center - segment.transform.position;
-            int numHits = Physics2D.RaycastNonAlloc(segment.transform.position/* - (_segmentOffset * diff.normalized)*/, diff, hits, diff.magnitude, _enclosableLayers);
-            Debug.DrawLine(segment.transform.position, center, Color.red, 5f);
-
-            // Loop through all hits and check if it's enclosable
-            for(int i = 0; i < numHits; i++)
+            var hit = _hits[i];
+            if (!hit) { break; }
+            if(hit.collider.TryGetComponent(out IEnclosable enclosable) && enclosable.CanEnclose)
             {
-                var hit = hits[i];
-                if(!hit || !hit.collider) { continue; }
-                if(hit.collider.TryGetComponent(out IEnclosable enclosable) && enclosable.CanEnclose)
-                {
-                    enclosable.Enclose();
-                }
+                enclosable.Enclose();
+            }
+        }
+
+
+        // Center isn't in the collider, so try to find a better place to spawn the effects
+        Vector2 center = _col.bounds.center;
+        if(!_col.OverlapPoint(center))
+        {
+            // Get the closest point on the collider
+            Vector2 closest = _col.ClosestPoint(center);
+
+            // Raycast through the enclosed area to find the other side
+            var hits = new RaycastHit2D[2];
+            int numHits = Physics2D.RaycastNonAlloc(closest, closest - center, hits, Mathf.Infinity, _segmentLayer);
+
+            // We found the other side! Average and use that point as a center
+            if(numHits == 2)
+            {
+                center = (closest + (Vector2)hits[1].collider.transform.position) / 2;
+            }
+            else
+            {
+                // Couldn't find the other side, just take the closest as a center
+                center = closest;
             }
         }
 
         OnCircleMade?.Invoke(center);
+
+        _col.enabled = false;
     }
 
     // Get segments that form the circle just made
-    private List<FollowSegment> GetCircleSegments(FollowSegment endSegment, IList<FollowSegment> segments)
+    private Vector2[] GetCirclePoints(FollowSegment endSegment, IList<FollowSegment> segments)
     {
         if (segments.Count == 0) { return null; }
-        
+
         Dictionary<FollowSegment, FollowSegment> parents = new Dictionary<FollowSegment, FollowSegment>();
         Queue<FollowSegment> queue = new Queue<FollowSegment>();
 
@@ -131,7 +129,7 @@ public class SnakeCircleDetector : MonoBehaviour
                 queue.Enqueue(cur.FollowTarget);
                 parents.Add(cur.FollowTarget, cur);
             }
-            if(cur.Previous && !parents.ContainsKey(cur.Previous))
+            if (cur.Previous && !parents.ContainsKey(cur.Previous))
             {
                 queue.Enqueue(cur.Previous);
                 parents.Add(cur.Previous, cur);
@@ -149,12 +147,13 @@ public class SnakeCircleDetector : MonoBehaviour
         }
 
         // Return our results by tracing back the shortest path from end to head
-        List<FollowSegment> res = new List<FollowSegment>();
+        //List<FollowSegment> res = new List<FollowSegment>();
+        List<Vector2> res = new List<Vector2>();
         while (cur != null)
         {
-            res.Add(cur);
+            res.Add(cur.transform.position - transform.position);
             cur = parents[cur];
         }
-        return res;
+        return res.ToArray();
     }
 }
